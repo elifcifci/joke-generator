@@ -1,5 +1,13 @@
+import React from "react";
+import { JokesProvider } from "./context/JokesContext";
+import Header from "./components/Header";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <JokesProvider>
+      <Header />
+    </JokesProvider>
+  );
 }
 
 export default App;
