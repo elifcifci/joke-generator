@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { createContext, useState } from "react";
-import { useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const JokesContext = createContext();
+
 const initialStateTemplate = { id: "", value: "" };
+const baseUrl = "https://api.chucknorris.io/jokes/";
 
 export const JokesProvider = ({ children }) => {
   const [randomJokeKnowledge, setRandomJokeKnowledge] =
@@ -11,8 +12,6 @@ export const JokesProvider = ({ children }) => {
   const [jokeCategories, setJokeCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("food");
   const [jokeInCategory, setJokeInCategory] = useState(initialStateTemplate);
-
-  const baseUrl = "https://api.chucknorris.io/jokes/";
 
   useEffect(() => {
     axios.get(`${baseUrl}random`).then((response) => {
@@ -29,7 +28,6 @@ export const JokesProvider = ({ children }) => {
 
   useEffect(() => {
     axios.get(`${baseUrl}random?${selectedCategory}`).then((response) => {
-      console.log("jokeInCategory: ", response.data);
       setJokeInCategory({
         id: response.data.id,
         value: response.data.value,
@@ -38,8 +36,7 @@ export const JokesProvider = ({ children }) => {
   }, [selectedCategory]);
 
   const updateSelectedCategory = (event) => {
-    const temporary = jokeCategories[event.id];
-    setSelectedCategory(temporary);
+    event.target.value !== "default" && setSelectedCategory(event.target.value);
   };
 
   const values = {
