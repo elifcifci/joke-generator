@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
-import JokesContext from "../../context/JokesContext";
+import React from "react";
+import SignUp from "../SignUp";
+import SignIn from "../SignIn";
+
 const Header = () => {
-  const { randomJokeKnowledge, jokeInCategory } = useContext(JokesContext);
   return (
     <div>
-      hello: {randomJokeKnowledge.value}
-      <div>{jokeInCategory.value}</div>
+      <SignUp />
+      <SignIn />
     </div>
   );
 };
