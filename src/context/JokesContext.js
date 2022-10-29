@@ -24,7 +24,7 @@ export const JokesProvider = ({ children }) => {
     });
 
     localStorage.getItem("saved-jokes") !== null &&
-      setSavedJokes([JSON.parse(localStorage.getItem("saved-jokes"))]);
+      setSavedJokes([...JSON.parse(localStorage.getItem("saved-jokes"))]);
   }, []);
 
   useEffect(() => {
@@ -81,13 +81,22 @@ export const JokesProvider = ({ children }) => {
       ...temp.slice(index + 1, temp.length),
     ]);
   };
-  const deleteFromSavedJokes = (category, joke) => {};
+  const deleteFromSavedJokes = (index) => {
+    console.log(index);
+    let temp = [...savedJokes];
+    setSavedJokes([
+      ...temp.slice(0, index),
+      ...temp.slice(index + 1, temp.length),
+    ]);
+  };
 
   const values = {
     randomJokeKnowledge,
     jokeCategories,
     jokeInCategory,
     jokesInBasket,
+    savedJokes,
+    deleteFromSavedJokes,
     removeJokesBasketItem,
     saveJokes,
     addInJokesBasket,

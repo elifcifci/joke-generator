@@ -11,8 +11,6 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     JSON.parse(localStorage.getItem("users")).length !== 4 &&
       setUsers([...JSON.parse(localStorage.getItem("users"))]);
-
-    // console.log("TEST: ", storedUsers);
   }, []);
 
   useEffect(() => {
