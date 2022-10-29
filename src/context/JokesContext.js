@@ -3,17 +3,16 @@ import React, { createContext, useState, useEffect } from "react";
 
 const JokesContext = createContext();
 
-const initialStateTemplate = { id: "", value: "" };
+const initialStateTemplate = { id: "", category: "", value: "" };
 const baseUrl = "https://api.chucknorris.io/jokes/";
 
 export const JokesProvider = ({ children }) => {
-  const [randomJokeKnowledge, setRandomJokeKnowledge] =
-    useState(initialStateTemplate);
   const [jokeCategories, setJokeCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("food");
-  const [jokeInCategory, setJokeInCategory] = useState(initialStateTemplate);
-  const [savedJokes, setSavedJokes] = useState([]);
+  const [randomJoke, setRandomJoke] = useState(initialStateTemplate);
+  const [categorizedJoke, setCategorizedJoke] = useState(initialStateTemplate);
   const [jokesInBasket, setJokesInBasket] = useState([]);
+  const [jokesInSaved, setJokesInSaved] = useState([]);
 
   useEffect(() => {
     openNextRandomJoke();
@@ -24,30 +23,27 @@ export const JokesProvider = ({ children }) => {
     });
 
     localStorage.getItem("saved-jokes") !== null &&
-      setSavedJokes([...JSON.parse(localStorage.getItem("saved-jokes"))]);
+      setJokesInSaved([...JSON.parse(localStorage.getItem("saved-jokes"))]);
   }, []);
 
   useEffect(() => {
-    selectedCategory && openNextJokeInCategory();
+    selectedCategory && openNextCategorizedJoke();
   }, [selectedCategory]);
 
-  useEffect(() => {}, [jokesInBasket]);
-
   useEffect(() => {
-    savedJokes.length !== 0 &&
-      localStorage.setItem("saved-jokes", JSON.stringify(savedJokes));
-    console.log("savedJokes", savedJokes);
-  }, [savedJokes]);
+    jokesInSaved.length !== 0 &&
+      localStorage.setItem("saved-jokes", JSON.stringify(jokesInSaved));
+  }, [jokesInSaved]);
 
   const updateSelectedCategory = (event) => {
     event.target.value !== "default" && setSelectedCategory(event.target.value);
   };
 
-  const openNextJokeInCategory = () => {
+  const openNextCategorizedJoke = () => {
     axios
       .get(`${baseUrl}random?category=${selectedCategory}`)
       .then((response) => {
-        setJokeInCategory({
+        setCategorizedJoke({
           id: response.data.id,
           value: response.data.value,
           category: response.data.categories[0],
@@ -57,52 +53,78 @@ export const JokesProvider = ({ children }) => {
 
   const openNextRandomJoke = () => {
     axios.get(`${baseUrl}random`).then((response) => {
-      setRandomJokeKnowledge({
+      setRandomJoke({
         id: response.data.id,
         value: response.data.value,
+        category: "random",
       });
     });
   };
 
-  const addInJokesBasket = (category, joke) => {
-    setJokesInBasket([...jokesInBasket, { category: category, value: joke }]);
+  // When we want to save any joke, we check with this function if this joke is one of the ones we saved before.
+  const checkIsSameJoke = (id, targetPlace) => {
+    let haveSameJokeInBasket = false;
+    let haveSameJokeInSaved = false;
+
+    if (targetPlace === "toBasket") {
+      jokesInBasket.forEach((item) => {
+        if (item.id === id) {
+          haveSameJokeInBasket = true;
+          return;
+        }
+      });
+    }
+    if (targetPlace === "toBasket" || targetPlace === "toSaved") {
+      jokesInSaved.forEach((item) => {
+        if (item.id === id) {
+          haveSameJokeInSaved = true;
+          return;
+        }
+      });
+    }
+
+    const result = {
+      haveSameJokeInBasket: haveSameJokeInBasket,
+      haveSameJokeInSaved: haveSameJokeInSaved,
+    };
+    return result;
   };
 
-  const saveJokes = (joke) => {
-    setSavedJokes([...savedJokes, joke]);
+  const addInBasketOrSavedJokes = (joke, targetPlace) => {
+    const isSameJoke = checkIsSameJoke(joke.id, targetPlace);
+
+    // Users can not add the joke from randomJoke or categorizedJoke to jokeBasket, if jokeBasket and jokeSaved have the same joke.
+    // Users can not add the joke from jokeBasket to jokeSaved, if jokeSaved has the same joke.
+    targetPlace === "toBasket"
+      ? isSameJoke.haveSameJokeInBasket === false &&
+        isSameJoke.haveSameJokeInSaved === false &&
+        setJokesInBasket([...jokesInBasket, joke])
+      : isSameJoke.haveSameJokeInSaved === false &&
+        setJokesInSaved([...jokesInSaved, joke]);
   };
 
-  const removeJokesBasketItem = (index) => {
-    console.log(index);
-    let temp = [...jokesInBasket];
-    // selected joke = temp.slice(index, index + 1)
-    setJokesInBasket([
-      ...temp.slice(0, index),
-      ...temp.slice(index + 1, temp.length),
-    ]);
-  };
-  const deleteFromSavedJokes = (index) => {
-    console.log(index);
-    let temp = [...savedJokes];
-    setSavedJokes([
-      ...temp.slice(0, index),
-      ...temp.slice(index + 1, temp.length),
-    ]);
+  const deleteJokesInBasketOrRemoveFromSavedJokes = (index, action) => {
+    action === "delete"
+      ? setJokesInSaved([
+          ...jokesInSaved.slice(0, index),
+          ...jokesInSaved.slice(index + 1, jokesInSaved.length),
+        ])
+      : setJokesInBasket([
+          ...jokesInBasket.slice(0, index),
+          ...jokesInBasket.slice(index + 1, jokesInBasket.length),
+        ]);
   };
 
   const values = {
-    randomJokeKnowledge,
     jokeCategories,
-    jokeInCategory,
+    categorizedJoke,
+    randomJoke,
     jokesInBasket,
-    savedJokes,
-    deleteFromSavedJokes,
-    removeJokesBasketItem,
-    saveJokes,
-    addInJokesBasket,
-    saveJokes,
+    jokesInSaved,
+    deleteJokesInBasketOrRemoveFromSavedJokes,
+    addInBasketOrSavedJokes,
     updateSelectedCategory,
-    openNextJokeInCategory,
+    openNextCategorizedJoke,
     openNextRandomJoke,
   };
 

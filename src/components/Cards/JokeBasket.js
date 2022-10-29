@@ -2,16 +2,27 @@ import React, { useContext } from "react";
 import JokesContext from "../../context/JokesContext";
 
 const JokeBasket = () => {
-  const { jokesInBasket, saveJokes, removeJokesBasketItem } =
-    useContext(JokesContext);
+  const {
+    jokesInBasket,
+    addInBasketOrSavedJokes,
+    deleteJokesInBasketOrRemoveFromSavedJokes,
+  } = useContext(JokesContext);
 
   const renderJokeList = () => {
     return jokesInBasket?.map((joke, index) => {
       return (
         <li key={index}>
           <p>{joke.value}</p>
-          <button onClick={() => saveJokes(joke)}>Save</button>
-          <button onClick={() => removeJokesBasketItem(index)}>Remove</button>
+          <button onClick={() => addInBasketOrSavedJokes(joke, "toSaved")}>
+            Save
+          </button>
+          <button
+            onClick={() =>
+              deleteJokesInBasketOrRemoveFromSavedJokes(index, "remove")
+            }
+          >
+            Remove
+          </button>
         </li>
       );
     });
