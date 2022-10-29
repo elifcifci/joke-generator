@@ -6,7 +6,7 @@ const Cards = () => {
     jokeInCategory,
     openNextJokeInCategory,
     openNextRandomJoke,
-    addInFavoriteJokes,
+    addInJokesBasket,
   } = useContext(JokesContext);
   return (
     <div>
@@ -15,11 +15,9 @@ const Cards = () => {
         <div>{randomJokeKnowledge.value}</div>
         <button onClick={openNextRandomJoke}>Next joke</button>
         <button
-          onClick={() =>
-            addInFavoriteJokes("random", randomJokeKnowledge.value)
-          }
+          onClick={() => addInJokesBasket("random", randomJokeKnowledge.value)}
         >
-          Liked it
+          Joke Basket
         </button>
       </section>
       <section>
@@ -28,10 +26,10 @@ const Cards = () => {
         <button onClick={openNextJokeInCategory}>Next joke</button>
         <button
           onClick={() =>
-            addInFavoriteJokes(jokeInCategory.category, jokeInCategory.value)
+            addInJokesBasket(jokeInCategory.category, jokeInCategory.value)
           }
         >
-          Liked it
+          Joke Basket
         </button>
       </section>
     </div>

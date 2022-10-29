@@ -12,7 +12,8 @@ export const JokesProvider = ({ children }) => {
   const [jokeCategories, setJokeCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("food");
   const [jokeInCategory, setJokeInCategory] = useState(initialStateTemplate);
-  const [favoriteJokes, setFavoriteJokes] = useState([]);
+  const [savedJokes, setSavedJokes] = useState([]);
+  const [jokesInBasket, setJokesInBasket] = useState([]);
 
   useEffect(() => {
     openNextRandomJoke();
@@ -22,19 +23,21 @@ export const JokesProvider = ({ children }) => {
       setJokeCategories(response.data);
     });
 
-    localStorage.getItem("favorites") !== null &&
-      setFavoriteJokes([...JSON.parse(localStorage.getItem("favorites"))]);
+    localStorage.getItem("saved-jokes") !== null &&
+      setSavedJokes([JSON.parse(localStorage.getItem("saved-jokes"))]);
   }, []);
 
   useEffect(() => {
-    openNextJokeInCategory();
+    selectedCategory && openNextJokeInCategory();
   }, [selectedCategory]);
 
+  useEffect(() => {}, [jokesInBasket]);
+
   useEffect(() => {
-    favoriteJokes.length !== 0 &&
-      localStorage.setItem("favorites", JSON.stringify(favoriteJokes));
-    console.log("favoriteJokes: ", favoriteJokes);
-  }, [favoriteJokes]);
+    savedJokes.length !== 0 &&
+      localStorage.setItem("saved-jokes", JSON.stringify(savedJokes));
+    console.log("savedJokes", savedJokes);
+  }, [savedJokes]);
 
   const updateSelectedCategory = (event) => {
     event.target.value !== "default" && setSelectedCategory(event.target.value);
@@ -60,20 +63,35 @@ export const JokesProvider = ({ children }) => {
       });
     });
   };
-  const addInFavoriteJokes = (category, joke) => {
-    setFavoriteJokes([...favoriteJokes, { category: category, value: joke }]);
+
+  const addInJokesBasket = (category, joke) => {
+    setJokesInBasket([...jokesInBasket, { category: category, value: joke }]);
   };
-  // const removeFromFavoriteJokes = (category, joke) => {
-  //   let removedJoke =
-  //   setFavoriteJokes([...favoriteJokes, { category: category, value: joke }]);
-  // };
+
+  const saveJokes = (joke) => {
+    setSavedJokes([...savedJokes, joke]);
+  };
+
+  const removeJokesBasketItem = (index) => {
+    console.log(index);
+    let temp = [...jokesInBasket];
+    // selected joke = temp.slice(index, index + 1)
+    setJokesInBasket([
+      ...temp.slice(0, index),
+      ...temp.slice(index + 1, temp.length),
+    ]);
+  };
+  const deleteFromSavedJokes = (category, joke) => {};
 
   const values = {
     randomJokeKnowledge,
     jokeCategories,
     jokeInCategory,
-    favoriteJokes,
-    addInFavoriteJokes,
+    jokesInBasket,
+    removeJokesBasketItem,
+    saveJokes,
+    addInJokesBasket,
+    saveJokes,
     updateSelectedCategory,
     openNextJokeInCategory,
     openNextRandomJoke,
