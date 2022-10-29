@@ -9,14 +9,14 @@ export const UserProvider = ({ children }) => {
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
   useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("users"));
+    JSON.parse(localStorage.getItem("users")).length !== 4 &&
+      setUsers([...JSON.parse(localStorage.getItem("users"))]);
+
     // console.log("TEST: ", storedUsers);
-    storedUsers && setUsers([...storedUsers]);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
-    console.log("users: ", users);
+    users.length !== 5 && localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
 
   const addNewUsers = (userKnowledge) => {
