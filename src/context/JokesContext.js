@@ -8,7 +8,7 @@ const baseUrl = "https://api.chucknorris.io/jokes/";
 
 export const JokesProvider = ({ children }) => {
   const [jokeCategories, setJokeCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("food");
+  const [selectedCategory, setSelectedCategory] = useState("animal");
   const [randomJoke, setRandomJoke] = useState(initialStateTemplate);
   const [categorizedJoke, setCategorizedJoke] = useState(initialStateTemplate);
   const [jokesInBasket, setJokesInBasket] = useState([]);
@@ -31,13 +31,10 @@ export const JokesProvider = ({ children }) => {
   }, [selectedCategory]);
 
   useEffect(() => {
-    jokesInSaved.length !== 0 &&
-      localStorage.setItem("saved-jokes", JSON.stringify(jokesInSaved));
+    jokesInSaved.length !== 0
+      ? localStorage.setItem("saved-jokes", JSON.stringify(jokesInSaved))
+      : jokesInSaved.length === 0 && localStorage.removeItem("saved-jokes");
   }, [jokesInSaved]);
-
-  const updateSelectedCategory = (event) => {
-    event.target.value !== "default" && setSelectedCategory(event.target.value);
-  };
 
   const openNextCategorizedJoke = () => {
     axios
@@ -104,6 +101,7 @@ export const JokesProvider = ({ children }) => {
   };
 
   const deleteJokesInBasketOrRemoveFromSavedJokes = (index, action) => {
+    //if jokesInBasket has only one item and we want to delete it, we  need to update localStore to clean the user's localStore.
     action === "delete"
       ? setJokesInSaved([
           ...jokesInSaved.slice(0, index),
@@ -121,9 +119,9 @@ export const JokesProvider = ({ children }) => {
     randomJoke,
     jokesInBasket,
     jokesInSaved,
+    setSelectedCategory,
     deleteJokesInBasketOrRemoveFromSavedJokes,
     addInBasketOrSavedJokes,
-    updateSelectedCategory,
     openNextCategorizedJoke,
     openNextRandomJoke,
   };

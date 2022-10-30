@@ -1,7 +1,8 @@
 import React from "react";
 import { useFormik } from "formik";
-
 import Validation from "../Validation";
+import { Button } from "antd";
+import "antd/dist/antd.css";
 
 const FormRenderer = ({ constants, initialValue, handleClick }) => {
   const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
@@ -38,7 +39,7 @@ const FormRenderer = ({ constants, initialValue, handleClick }) => {
   return (
     <form onSubmit={handleSubmit}>
       {createFormItems()}
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 };

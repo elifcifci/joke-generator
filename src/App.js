@@ -1,24 +1,29 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
-import Filter from "./components/Filter";
-import Cards from "./components/Cards";
-import JokeBasket from "./components/Cards/JokeBasket";
-import SavedJoke from "./components/Cards/SavedJoke";
+import Main from "./components/Main";
+import FactsViewer from "./components/FactsViewer";
+import FactsInSaved from "./components/FactsInSaved";
+import ErrorPage from "./components/ErrorPage";
 
 import { JokesProvider } from "./context/JokesContext";
 import { UserProvider } from "./context/UserContext";
-
 function App() {
   return (
-    <JokesProvider>
-      <UserProvider>
-        <Header />
-        <Filter />
-        <Cards />
-        <JokeBasket />
-        <SavedJoke />
-      </UserProvider>
-    </JokesProvider>
+    <BrowserRouter>
+      <JokesProvider>
+        <UserProvider>
+          <Header />
+          <Routes>
+            <Route path="/" exact element={<Main />} />
+            <Route path="/facts-viewer" exact element={<FactsViewer />} />
+            <Route path="/facts-in-saved" exact element={<FactsInSaved />} />
+            <Route path="*" exact element={<ErrorPage />} />
+          </Routes>
+        </UserProvider>
+      </JokesProvider>
+    </BrowserRouter>
   );
 }
 

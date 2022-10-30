@@ -9,10 +9,11 @@ export const UserProvider = ({ children }) => {
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
   useEffect(() => {
-    JSON.parse(localStorage.getItem("users")).length !== 4 &&
+    const temp = JSON.parse(localStorage.getItem("users"));
+    temp &&
+      temp.length !== 4 &&
       setUsers([...JSON.parse(localStorage.getItem("users"))]);
   }, []);
-
   useEffect(() => {
     users.length !== 5 && localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
