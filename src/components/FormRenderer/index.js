@@ -1,46 +1,57 @@
 import React from "react";
-import { useFormik } from "formik";
-import Validation from "../Validation";
-import { Button } from "antd";
+
 import "antd/dist/antd.css";
+import {
+  Button,
+  Col,
+  DatePicker,
+  Drawer,
+  Form,
+  Input,
+  Row,
+  Select,
+  Space,
+} from "antd";
 
 const FormRenderer = ({ constants, initialValue, handleClick }) => {
-  const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
-    useFormik({
-      initialValues: initialValue,
-
-      onSubmit: (values) => {
-        handleClick(values);
-        console.log(values);
-      },
-      validationSchema: Validation,
-    });
-
-  const createFormItems = () => {
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+  const fromItemRenderer = () => {
     return constants.map((constant) => {
-      let itemName = constant.item;
       return (
-        <label htmlFor={constant.item} key={itemName}>
-          {constant.title}:
-          <input
-            id={constant.id}
-            name={constant.item}
-            type={constant.type}
-            value={values.itemName}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          {errors.itemName && touched.itemName && <div>{errors.itemName}</div>}
-        </label>
+        <Form.Item
+          key={constant.id}
+          label={constant.label}
+          name={constant.name}
+          rules={constant.rules}
+          {...(constant.id === "sing-up-password-confirm" && {
+            hasFeedback: true,
+            dependencies: ["password"],
+          })}
+        >
+          <Input />
+        </Form.Item>
       );
     });
   };
-
   return (
-    <form onSubmit={handleSubmit}>
-      {createFormItems()}
-      <Button type="submit">Submit</Button>
-    </form>
+    <Form
+      layout="vertical"
+      hideRequiredMark
+      name="basic"
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      autoComplete="off"
+    >
+      {fromItemRenderer}
+    </Form>
   );
 };
 
