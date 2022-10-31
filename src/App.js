@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
-import Main from "./components/Main";
+import Main from "./pages/Main";
 import FactsViewer from "./components/FactsViewer";
 import FactsInSaved from "./components/FactsInSaved";
-import ErrorPage from "./components/ErrorPage";
+import ErrorPage from "./pages/ErrorPage";
 
 import { JokesProvider } from "./context/JokesContext";
 import { UserProvider } from "./context/UserContext";

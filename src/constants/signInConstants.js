@@ -1,20 +1,20 @@
 export const signInConstants = [
   {
-    id: "signInFullname",
-    title: "Fullname",
-    item: "fullname",
-    type: "text",
+    id: "sing-in-name",
+    label: "Name",
+    name: "username",
+    rules: [{ required: true, message: "Please input your name!" }],
   },
   {
-    id: "signInNickname",
-    title: "Nickname",
-    item: "nickname",
-    type: "text",
+    id: "sing-in-surname",
+    label: "Surname",
+    name: "surname",
+    rules: [{ required: true, message: "Please input your surname!" }],
   },
   {
-    id: "signInPassword",
-    title: "Password",
-    item: "password",
-    type: "password",
+    id: "sing-in-password",
+    label: "Password",
+    name: "password",
+    rules: [{ required: true, message: "Please input your password!" }],
   },
 ];

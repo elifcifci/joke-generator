@@ -8,7 +8,11 @@ const Main = () => {
     <div>
       <section>
         <h1>What is this website?</h1>
-        <img src="./images/chuck-norris.png" alt="" />
+        <img
+          style={{ width: "100px" }}
+          src="./images/chuck-norris.png"
+          alt=""
+        />
         <div>
           <p>
             This website contains jokes about Chuck Norris, called Chuck Norris

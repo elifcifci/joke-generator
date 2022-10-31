@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import JokesContext from "../../context/JokesContext";
 import Filter from "../Filter";
-import FactsInBasket from "../FactsInBasket";
+import ModelRenderer from "../ModelRenderer";
+
 import "antd/dist/antd.css";
-import { Button, Space, Typography, Divider, Modal } from "antd";
+import { Button, Space, Typography, Divider, message } from "antd";
 const { Title } = Typography;
 
 const JokeViewer = () => {
@@ -19,13 +20,14 @@ const JokeViewer = () => {
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const success = () => {
+    message.success("This is a success message");
   };
 
+  const handleClick = (joke, targetPlace) => {
+    addInBasketOrSavedJokes(joke, targetPlace);
+    success();
+  };
   return (
     <div
       style={{
@@ -43,9 +45,7 @@ const JokeViewer = () => {
 
           <Space size="middle">
             <Button onClick={openNextRandomJoke}>Next Fact</Button>
-            <Button
-              onClick={() => addInBasketOrSavedJokes(randomJoke, "toBasket")}
-            >
+            <Button onClick={() => handleClick(randomJoke, "toBasket")}>
               Facts Basket
             </Button>
           </Space>
@@ -62,11 +62,7 @@ const JokeViewer = () => {
           <div>{categorizedJoke.value}</div>
           <Space size="middle">
             <Button onClick={openNextCategorizedJoke}>Next Fact</Button>
-            <Button
-              onClick={() =>
-                addInBasketOrSavedJokes(categorizedJoke, "toBasket")
-              }
-            >
+            <Button onClick={() => handleClick(categorizedJoke, "toBasket")}>
               Facts Basket
             </Button>
           </Space>
@@ -77,14 +73,12 @@ const JokeViewer = () => {
         <Button type="primary" onClick={showModal}>
           Open Your Basket
         </Button>
-        <Modal
-          title="Facts in Your Basket"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <FactsInBasket />
-        </Modal>
+        <ModelRenderer
+          modalTitle="Facts in Your Basket"
+          componentName="FactsInBasket"
+          setIsModalOpen={setIsModalOpen}
+          isModalOpen={isModalOpen}
+        />
       </section>
     </div>
   );

@@ -1,26 +1,41 @@
 export const signUpConstants = [
   {
-    id: "signUpFullname",
-    title: "Fullname",
-    item: "fullname",
-    type: "text",
+    id: "sing-up-name",
+    label: "Name",
+    name: "username",
+    rules: [{ required: true, message: "Please input your name!" }],
   },
   {
-    id: "signUpNickname",
-    title: "Nickname",
-    item: "nickname",
-    type: "text",
+    id: "sing-up-surname",
+    label: "Surname",
+    name: "surname",
+    rules: [{ required: true, message: "Please input your surname!" }],
   },
   {
-    id: "signUpPassword",
-    title: "Password",
-    item: "password",
-    type: "password",
+    id: "sing-up-password",
+    label: "Password",
+    name: "password",
+    rules: [{ required: true, message: "Please input your password!" }],
   },
   {
-    id: "signUpPasswordConfirm",
-    title: "Confirm the password",
-    item: "passwordConfirm",
-    type: "password",
+    id: "sing-up-password-confirm",
+    label: "Confirm Password",
+    name: "confirm",
+    rules: [
+      {
+        required: true,
+        message: "Please confirm your password!",
+      },
+      ({ getFieldValue }) => ({
+        validator(_, value) {
+          if (!value || getFieldValue("password") === value) {
+            return Promise.resolve();
+          }
+          return Promise.reject(
+            new Error("The two passwords that you entered do not match!")
+          );
+        },
+      }),
+    ],
   },
 ];
