@@ -17,9 +17,11 @@ const FormRenderer = ({ constants, initialValue, handleClick }) => {
   const onFinish = (values) => {
     console.log("Success:", values);
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
   const fromItemRenderer = () => {
     return constants.map((constant) => {
       return (

@@ -3,16 +3,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Main from "./pages/Main";
-import FactsViewer from "./components/FactsViewer";
+import FactsViewer from "./pages/FactsViewer";
 import FactsInSaved from "./components/FactsInSaved";
 import ErrorPage from "./pages/ErrorPage";
 
-import { JokesProvider } from "./context/JokesContext";
+import { FactsProvider } from "./context/FactsContext";
 import { UserProvider } from "./context/UserContext";
 function App() {
   return (
     <BrowserRouter>
-      <JokesProvider>
+      <FactsProvider>
         <UserProvider>
           <Header />
           <Routes>
@@ -22,7 +22,7 @@ function App() {
             <Route path="*" exact element={<ErrorPage />} />
           </Routes>
         </UserProvider>
-      </JokesProvider>
+      </FactsProvider>
     </BrowserRouter>
   );
 }

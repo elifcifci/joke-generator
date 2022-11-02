@@ -1,0 +1,89 @@
+.sections {
+    background-color: #FCF8E8;
+    display: flex !important; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    row-gap: 40px;
+    height: calc(100vh);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    position: relative;
+}
+.chuckNorrisPictures{
+    width: 220px;
+    height: 220px;
+    object-fit:cover;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
+}
+
+.sectionImageContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+}
+
+.sectionTitle {
+    color: #DF7861 ;
+    font-size: 28px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+
+}
+
+#cardNorris{
+    color: #FCF8E8;
+    background-color: #3A3845;
+}
+
+#cardNorris .sectionTitle {
+    color: #FCF8E8 ;
+
+}
+
+.sectionText{
+    font-size: 16px;
+    text-align: center;
+}
+
+.mainPageContainer button {
+    background-color: #826F66 !important;
+    height: 5px !important;
+}
+
+.sectionLinks{
+    color: initial;
+    font-weight: bold;
+}
+.sectionLinks:hover{
+    color: initial;
+
+}
+@media(min-width:600px){
+
+.chuckNorrisPictures{
+    width: 200px;
+    height: 200px;
+}
+
+.sectionImageContainer{
+    order : 1;
+    justify-content: flex-start;
+}
+section > h1{
+    order : 2;
+
+}
+
+.sectionText{
+    order: 3;
+
+}
+
+.sections{
+display: grid;
+grid-template-columns: 1fr 1fr;
+border: solid
+}
+}

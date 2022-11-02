@@ -1,0 +1,13 @@
+.factsCategories, .factsCategoriesOption{
+    color: #826F66;
+}
+
+.factsCategories {
+    width: 200px;
+    border: none;
+    outline: none;
+}
+.factsCategories::content{
+    border: solid;
+
+}

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import FactsContext from "../../context/FactsContext";
 import { Button, Space, message, Empty } from "antd";
-import style from "./style.module.css";
 
 const FactsInBasket = () => {
   const {
+    factsInSaved,
     factsInBasket,
     addInBasketOrSavedFacts,
     deleteFactsInBasketOrRemoveFromSavedFact,
@@ -22,9 +22,9 @@ const FactsInBasket = () => {
   const renderFactList = () => {
     return factsInBasket?.map((fact, index) => {
       return (
-        <li className={style.basketListItem} key={index}>
-          <p>{fact.value}</p>
-          <div className={style.buttonContainer}>
+        <li key={index}>
+          <Space>
+            <p>{fact.value}</p>
             <Button onClick={() => handleClick(fact, "toSaved")}>Save</Button>
             <Button
               danger
@@ -34,20 +34,19 @@ const FactsInBasket = () => {
             >
               Remove
             </Button>
-          </div>
+          </Space>
         </li>
       );
     });
   };
   return (
     <>
-      <ul className={style.basketList}>{renderFactList()}</ul>
+      <ul>{renderFactList()}</ul>
       {factsInBasket.length == 0 && (
         <Empty
-          className={style.basketEmptyCard}
           image="https://media1.giphy.com/media/Lx8lyPHGfdNjq/giphy.gif?cid=ecf05e47149eboq1wdzk0t977bfcj1vi4lus2okothxg1o54&rid=giphy.gif&ct=g"
           imageStyle={{
-            width: 200,
+            height: 240,
           }}
           description={
             <span>

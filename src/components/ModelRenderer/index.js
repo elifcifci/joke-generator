@@ -22,6 +22,7 @@ const ModelRenderer = ({
   return (
     <div>
       <Modal
+        className={componentName === "FactsInBasket" ? "basketModal" : ""}
         title={modalTitle}
         open={isModalOpen}
         onOk={handleOk}

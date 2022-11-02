@@ -1,17 +1,23 @@
 import React, { useContext } from "react";
 
-import JokesContext from "../../context/JokesContext";
+import FactsContext from "../../context/FactsContext";
+import style from "./style.module.css";
 
 import { Select } from "antd";
 const { Option } = Select;
 
 const Filter = () => {
-  const { jokeCategories, setSelectedCategory } = useContext(JokesContext);
+  const { factCategories, setSelectedCategory } = useContext(FactsContext);
 
   const renderButton = () => {
-    return jokeCategories.map((category) => {
+    return factCategories.map((category) => {
       return (
-        <Option key={category} value={category} id={category}>
+        <Option
+          key={category}
+          className={style.factsCategoriesOption}
+          value={category}
+          id={category}
+        >
           {category.slice(0, 1).toUpperCase() +
             category.slice(1, category.length).toLowerCase()}
         </Option>
@@ -21,8 +27,11 @@ const Filter = () => {
   return (
     <div>
       <Select
+        allowClear
+        autoFocus={true}
+        defaultValue="Random"
         showSearch
-        className="joke-categories"
+        className={style.factsCategories}
         placeholder="Search to Select"
         optionFilterProp="children"
         filterOption={(input, option) => option.children.includes(input)}
@@ -32,9 +41,6 @@ const Filter = () => {
             .localeCompare(optionB.children.toLowerCase())
         }
         onChange={(event) => setSelectedCategory(event)}
-        style={{
-          width: 200,
-        }}
       >
         {renderButton()}
       </Select>
