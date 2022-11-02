@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import FactsContext from "../../context/FactsContext";
-import { Button, Space, message, Empty } from "antd";
+import { Button, message, Empty } from "antd";
 import style from "./style.module.css";
 
 const FactsInBasket = () => {
@@ -47,7 +47,7 @@ const FactsInBasket = () => {
           className={style.basketEmptyCard}
           image="https://media1.giphy.com/media/Lx8lyPHGfdNjq/giphy.gif?cid=ecf05e47149eboq1wdzk0t977bfcj1vi4lus2okothxg1o54&rid=giphy.gif&ct=g"
           imageStyle={{
-            width: 200,
+            width: "100%",
           }}
           description={
             <span>

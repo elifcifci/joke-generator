@@ -1,0 +1,67 @@
+.factsInSavedContainer {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 70px);
+    box-sizing: border-box;
+    padding: 70px 0 20px 0;
+
+
+}
+
+.factsInSavedList{
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    row-gap: 20px;
+    
+
+}
+.factsInSavedListItem{
+    list-style-type: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6) ;    
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 16px;
+
+}
+
+.backgroundImage{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 70px;
+    z-index: 1;
+    filter: brightness(70%);
+
+}
+
+.noSavedFactContainer{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noSavedFact{
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7) ;    
+    border-radius: 20px;
+    font-size: 20px;
+    color: #f9d9c0;
+    text-align: center;
+}
+
+.titleContainer{
+    position: relative;
+    z-index: 2;
+}
+
+.title{
+    color: white;
+
+}

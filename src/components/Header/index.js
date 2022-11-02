@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { navigation } from "../../constants/navigationConstants";
 //Components
 import ModelRenderer from "../ModelRenderer";
 
@@ -8,12 +8,23 @@ import ModelRenderer from "../ModelRenderer";
 import "antd/dist/antd.css";
 import { Space, Breadcrumb, Drawer } from "antd";
 import { EllipsisOutlined } from "@ant-design/icons";
-
+import { useLocation } from "react-router-dom";
 import style from "./style.module.css";
 
 const Header = () => {
   const [isForSignUp, setIsForSignUp] = useState(false);
   const [isForSignIn, setIsForSignIn] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [pageTitle, setPageTitle] = useState("");
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    navigation.forEach((item) => {
+      if (item.link === pathname || item.link === "") {
+        setPageTitle(item.title);
+      }
+    });
+  }, [pathname]);
 
   const showModal = (componentName) => {
     if (componentName === "SignUp") {
@@ -23,7 +34,6 @@ const Header = () => {
     }
   };
 
-  const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
   };
@@ -41,7 +51,7 @@ const Header = () => {
             src="https://media.tenor.com/BupEc9JI6S0AAAAi/chuck-norris-minion.gif"
             alt="Chuck Norris Minion Sticker - Chuck Norris Minion Emote Stickers"
           />
-          <h1 className={style.headerTitle}>Chuck Norris Facts</h1>
+          <h1 className={style.headerTitle}>{pageTitle}</h1>
         </div>
         <EllipsisOutlined
           onClick={showDrawer}

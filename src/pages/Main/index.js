@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./style.module.css";
-import { mainConstants } from "../../constants/mainConstans";
+import { mainConstants } from "../../constants/mainConstants";
 
 //Ant-design
 import "antd/dist/antd.css";

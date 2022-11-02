@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Main from "./pages/Main";
 import FactsViewer from "./pages/FactsViewer";
-import FactsInSaved from "./components/FactsInSaved";
+import FactsInSaved from "./pages/FactsInSaved";
 import ErrorPage from "./pages/ErrorPage";
 
 import { FactsProvider } from "./context/FactsContext";
