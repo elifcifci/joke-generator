@@ -17,7 +17,8 @@ export const UserProvider = ({ children }) => {
     localStorage.getItem("users") === null &&
       localStorage.setItem("users", JSON.stringify(users));
 
-    console.log(localStorage.getItem("currentUser"));
+    localStorage.getItem("currentUser") &&
+      setCurrentUser({ ...JSON.parse(localStorage.getItem("currentUser")) });
 
     localStorage.getItem("currentUser") && setIsLoggedIn(true);
   }, []);
@@ -27,12 +28,9 @@ export const UserProvider = ({ children }) => {
   }, [users]);
 
   useEffect(() => {
-    console.log("isLoggedIn: ", isLoggedIn);
     localStorage.getItem("isLoggedIn") !== null &&
       localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
-
-  useEffect(() => {}, [currentUser]);
 
   const logout = () => {
     setIsLoggedIn(false);
@@ -47,7 +45,6 @@ export const UserProvider = ({ children }) => {
     setUsers((previous) => [...previous, userKnowledge]);
   };
 
-  // sagnIn olunca gerceklesecek adimler
   const signIn = (data) => {
     setIsLoggedIn(true);
     setCurrentUser(data);

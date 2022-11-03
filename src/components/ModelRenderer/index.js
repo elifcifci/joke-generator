@@ -1,5 +1,4 @@
 import React from "react";
-import FactsInBasket from "../FactsInBasket";
 
 import style from "./style.module.css";
 import "antd/dist/antd.css";
@@ -24,7 +23,7 @@ const ModelRenderer = ({
   return (
     <div>
       <Modal
-        className={componentName === "FactsInBasket" ? style.basketModal : ""}
+        className={style.basketModal}
         title={modalTitle}
         open={isModalOpen}
         onOk={handleOk}
@@ -36,14 +35,12 @@ const ModelRenderer = ({
             constants={signUpConstants}
             setIsModalOpen={setIsModalOpen}
           />
-        ) : componentName === "SignIn" ? (
+        ) : (
           <FormRenderer
             processFor="signIn"
             constants={signInConstants}
             setIsModalOpen={setIsModalOpen}
           />
-        ) : (
-          <FactsInBasket />
         )}
       </Modal>
     </div>

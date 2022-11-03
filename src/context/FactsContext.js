@@ -7,7 +7,7 @@ const initialStateTemplate = { id: "", category: "", value: "" };
 const baseUrl = "https://api.chucknorris.io/jokes/";
 
 export const FactsProvider = ({ children }) => {
-  const [factCategories, setJokeCategories] = useState([]);
+  const [factCategories, setFactCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("random");
   const [facts, setFacts] = useState(initialStateTemplate);
   const [factsInBasket, setFactsInBasket] = useState([]);
@@ -17,7 +17,7 @@ export const FactsProvider = ({ children }) => {
     openNextFact();
     //take categories in the API
     axios.get(`${baseUrl}categories`).then((response) => {
-      setJokeCategories(["random", ...response.data]);
+      setFactCategories(["random", ...response.data]);
     });
 
     localStorage.getItem("saved-jokes") !== null &&
@@ -56,7 +56,6 @@ export const FactsProvider = ({ children }) => {
   const checkIsSameJoke = (id, targetPlace) => {
     let haveSameFactInBasket = false;
     let haveSameFactInSaved = false;
-    console.log(factsInSaved);
     if (targetPlace === "toBasket") {
       factsInBasket.forEach((item) => {
         if (item.id === id) {
@@ -83,7 +82,6 @@ export const FactsProvider = ({ children }) => {
 
   const addInBasketOrSavedFacts = (fact, targetPlace) => {
     const isSameFact = checkIsSameJoke(fact.id, targetPlace);
-    console.log("fact: ", fact, targetPlace);
 
     // Users can not add the fact from randomJoke or categorizedJoke to factBasket, if factBasket and factSaved have the same fact.
     // Users can not add the fact from factBasket to factSaved, if factSaved has the same fact.

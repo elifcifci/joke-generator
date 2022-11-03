@@ -14,4 +14,9 @@ export const navigation = [
     title: "CNF | Saved Facts",
     link: "/facts-in-saved",
   },
+  {
+    id: "facts-in-basket",
+    title: "CNF | Facts in Basket",
+    link: "/facts-in-basket",
+  },
 ];

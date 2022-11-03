@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import FactsContext from "../../context/FactsContext";
+import UserContext from "../../context/UserContext";
 import "antd/dist/antd.css";
 import style from "./style.module.css";
 
 import { CloseOutlined } from "@ant-design/icons";
-import { Button, Space, Typography, Divider, Empty } from "antd";
-const { Title } = Typography;
+import { Space } from "antd";
 
 const FactsInSaved = () => {
   const { factsInSaved, deleteFactsInBasketOrRemoveFromSavedFact } =
     useContext(FactsContext);
+  const { currentUser } = useContext(UserContext);
 
   const renderJokeList = () => {
     return factsInSaved?.map((joke, index) => {
@@ -31,6 +32,7 @@ const FactsInSaved = () => {
       );
     });
   };
+
   return (
     <div className={style.factsInSavedContainer}>
       <img className={style.backgroundImage} src="./images/img-4.jpg" alt="" />
@@ -38,7 +40,8 @@ const FactsInSaved = () => {
       {factsInSaved.length === 0 && (
         <div className={style.noSavedFactContainer}>
           <p className={style.noSavedFact}>
-            You haven't added any Chuck Norris facts to your basket yet
+            Hey, {currentUser.username}! You haven't added any Chuck Norris
+            facts to your basket yet
           </p>
         </div>
       )}

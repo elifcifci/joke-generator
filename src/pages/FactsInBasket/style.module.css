@@ -1,3 +1,18 @@
+.factsContainer{
+    box-sizing: border-box;
+    min-height: 100vh ;
+    margin-top: 70px;
+}
+
+.basketEmptyCard{
+    padding: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.basketListItem{
+    list-style-type: none;
+}
 .backgroundImage{
     position: fixed;
     z-index: 1;
@@ -12,12 +27,12 @@
     color: white;
     font-size: 18px;
     position: relative;
-    height: 100vh ;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 15px;
+    padding: 20px 15px;
+    row-gap: 20px;
 }
 
 .factCardContainer{
@@ -27,18 +42,11 @@
     z-index: 3;
     padding: 20px;
     border-radius: 20px;
-}
-
-.factsCard{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     height: auto;
-    min-height: 200px;
-    position: relative;
-    z-index: 2;
-
 }
 
 .cardHeader{
@@ -49,27 +57,18 @@
     justify-content: space-between;
 }
 
-.factsTitle{
-    font-family: 'Griffy', cursive;
-    color: #bf9e8f;
-    font-size: 30px;
-    margin: 0;
-    text-shadow: -1px -1px 20px black,
-                  3px 3px 20px black,
-                  6px 6px 20px black;
-    position: relative;
-    z-index: 2;
-    width: 100%;
-}
-
-.saveButton, .nextButton{
+.saveButton, .removeButton{
     color: #826F66 ;
     font-size: 14px;
     font-weight: bold;
     width: 90px;
 }
 
-.saveButton:hover, .nextButton:hover{
+.removeButton{
+    color: #9c2121 ;
+
+}
+.saveButton:hover, .removeButton:hover{
     color: #826F66 ;
     border: none;
 
@@ -80,8 +79,6 @@
 }
 
 .factsButtonContainer{
-    position: absolute;
-    bottom: 20px;
     z-index: 2;
     display: flex;
     justify-content: center;
@@ -92,9 +89,6 @@
 
 .openBasketFactsButtonSection{
     position: fixed;
-    bottom: 30px;
-    right: 40px;
-    background-color: transparent;
     z-index: 9;
 }
 

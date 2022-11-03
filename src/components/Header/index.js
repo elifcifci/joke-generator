@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+
 import UserContext from "../../context/UserContext";
-import { Link } from "react-router-dom";
 import { navigation } from "../../constants/navigationConstants";
 
 //Components
 import ModelRenderer from "../ModelRenderer";
-import { motion, useCycle } from "framer-motion";
 
 //Ant-design
 import "antd/dist/antd.css";
 import { Space } from "antd";
 import { EllipsisOutlined, LoginOutlined } from "@ant-design/icons";
 
+import { motion, useCycle } from "framer-motion";
 import style from "./style.module.css";
 
 const Header = () => {
@@ -24,12 +24,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const { isLoggedIn, logout } = useContext(UserContext);
 
-  useEffect(() => {
-    let innerWidth = window.innerWidth;
-    setPageWidth(innerWidth);
-  }, [isOpen]);
-
-  const variants = {
+  const animationConfig = {
     open: {
       x: -pageWidth,
       opacity: 1,
@@ -65,6 +60,11 @@ const Header = () => {
       opacity: 0,
     },
   };
+
+  useEffect(() => {
+    let innerWidth = window.innerWidth;
+    setPageWidth(innerWidth);
+  }, [isOpen]);
 
   useEffect(() => {
     navigation.forEach((item) => {
@@ -107,7 +107,7 @@ const Header = () => {
             style={{
               fontSize: "40px",
               position: "absolute",
-              right: 15,
+              right: 5,
               top: 15,
               color: "#bf9e8f",
               zIndex: 9,
@@ -116,7 +116,7 @@ const Header = () => {
         </div>
 
         <motion.div
-          variants={variants}
+          variants={animationConfig}
           onClick={showMenu}
           initial={{ opacity: 0 }}
           animate={isOpen ? "open" : ["close", "disappear"]}
@@ -125,7 +125,7 @@ const Header = () => {
           {/* Navigation links */}
           {isLoggedIn && (
             <motion.div
-              variants={variants}
+              variants={animationConfig}
               initial={{ opacity: 0 }}
               animate={isOpen ? "textOpen" : "textClose"}
               className={style.navigation}
@@ -136,8 +136,11 @@ const Header = () => {
               <Link className={style.navigationItem} to="/facts-viewer">
                 Facts
               </Link>
+              <Link className={style.navigationItem} to="/facts-in-basket">
+                Basket
+              </Link>
               <Link className={style.navigationItem} to="/facts-in-saved">
-                Saved Facts
+                Saved
               </Link>
             </motion.div>
           )}
@@ -145,7 +148,7 @@ const Header = () => {
           {/* Registration and login*/}
           {!isLoggedIn && (
             <motion.div
-              variants={variants}
+              variants={animationConfig}
               initial={{ opacity: 0 }}
               animate={isOpen ? "textOpen" : "textClose"}
               className={style.userRegistration}
@@ -158,7 +161,7 @@ const Header = () => {
 
           {isLoggedIn && (
             <motion.div
-              variants={variants}
+              variants={animationConfig}
               initial={{ opacity: 0 }}
               animate={isOpen ? "textOpen" : "textClose"}
               className={style.logoutIconContainer}

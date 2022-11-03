@@ -22,12 +22,20 @@ const FactsInBasket = () => {
   const renderFactList = () => {
     return factsInBasket?.map((fact, index) => {
       return (
-        <li className={style.basketListItem} key={index}>
-          <p>{fact.value}</p>
-          <div className={style.buttonContainer}>
-            <Button onClick={() => handleClick(fact, "toSaved")}>Save</Button>
+        <li
+          className={`${style.basketListItem} ${style.factCardContainer}`}
+          key={index}
+        >
+          <p className={style.factsText}>{fact.value}</p>
+          <div className={style.factsButtonContainer}>
             <Button
-              danger
+              className={style.saveButton}
+              onClick={() => handleClick(fact, "toSaved")}
+            >
+              Save
+            </Button>
+            <Button
+              className={style.removeButton}
               onClick={() =>
                 deleteFactsInBasketOrRemoveFromSavedFact(index, "remove")
               }
@@ -40,8 +48,11 @@ const FactsInBasket = () => {
     });
   };
   return (
-    <>
-      <ul className={style.basketList}>{renderFactList()}</ul>
+    <div className={style.factsContainer}>
+      <img className={style.backgroundImage} src="./images/chuck-norris.png" />
+      <ul className={`${style.basketList} ${style.factsSection}`}>
+        {renderFactList()}
+      </ul>
       {factsInBasket.length == 0 && (
         <Empty
           className={style.basketEmptyCard}
@@ -56,7 +67,7 @@ const FactsInBasket = () => {
           }
         ></Empty>
       )}
-    </>
+    </div>
   );
 };
 
