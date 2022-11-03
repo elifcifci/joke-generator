@@ -1,0 +1,47 @@
+.errorPageContainer{
+    height: 100vh;
+    background-color: #bf9e8f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.errorPageInnerContainer{
+    background-color: #715f56;
+    padding: 20px;
+    border-radius: 20px;
+    min-height: 300px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.errorPageTitle{
+    color: #715f56 !important;
+    text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.826),
+    1px 0px 1px rgba(0, 0, 0, 0.674),
+    0px 1px 3px rgba(0, 0, 0, 0.785);
+    font-family: 'Griffy', cursive;
+    font-size: 80px !important;
+    margin: 0 !important;
+}
+.errorPageText{
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+.errorPageLink{
+    color: #826F66;
+    font-weight: bold;
+    display: block !important;
+    color: #826F66 !important;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 15px;
+
+}
