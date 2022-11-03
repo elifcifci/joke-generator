@@ -29,27 +29,30 @@ const JokeViewer = () => {
         src="./images/chuck-norris-Evgeny-Yurichev.png"
       />
       <section id={style.factsSection} className={style.factsSection}>
-        <div className={style.innerSectionContainer}>
-          <h2 className={style.factsTitle}>Facts </h2>
-          <Filter />
+        <div className={style.factCardContainer}>
+          <div className={style.cardHeader}>
+            <h2 className={style.factsTitle}>Categories: </h2>
+            <Filter />
+          </div>
           <div className={style.factsCard}>
             <p className={style.factsText}>{facts.value}</p>
-            <div className={style.factsButtonContainer}>
-              <Button className={style.nextButton} onClick={openNextFact}>
-                Next
-              </Button>
-              <Button
-                className={style.saveButton}
-                onClick={() => handleClick(facts, "toBasket")}
-              >
-                Basket
-              </Button>
-            </div>
           </div>
         </div>
       </section>
 
-      <section className={style.openBasketFactsButtonSection}>
+      <section className={style.factsButtonContainer}>
+        <Button className={style.nextButton} onClick={openNextFact}>
+          Next
+        </Button>
+        <Button
+          className={style.saveButton}
+          onClick={() => handleClick(facts, "toBasket")}
+        >
+          Basket
+        </Button>
+      </section>
+
+      {/* <section className={style.openBasketFactsButtonSection}>
         <Button
           draggable={true}
           className={style.draggableButton}
@@ -63,7 +66,7 @@ const JokeViewer = () => {
           setIsModalOpen={setIsModalOpen}
           isModalOpen={isModalOpen}
         />
-      </section>
+      </section> */}
     </div>
   );
 };

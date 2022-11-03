@@ -1,16 +1,3 @@
-.factsSection{
-    color: white;
-    font-size: 18px;
-    position: relative;
-    background-color: antiquewhite;
-    height: 100vh ;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 30px;
-}
-
 .backgroundImage{
     position: fixed;
     z-index: 1;
@@ -21,18 +8,27 @@
     height: 100%;
 }
 
-.factsTitle{
+.factsSection{
     color: white;
-    font-size: 30px;
+    font-size: 18px;
     position: relative;
-    z-index: 2;
+    height: 100vh ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+
+.factCardContainer{
+    background-color: rgba(0, 0, 0, 0.5) ;    
     width: 100%;
-    border-bottom: 2px solid rgba(130, 111, 102, 0.7);
+    position: relative;
+    z-index: 3;
+    padding: 20px;
+    border-radius: 20px;
 }
-.categorizedFactsTitle{
-    color: #826F66 ;
-    font-size: 30px;
-}
+
 .factsCard{
     display: flex;
     flex-direction: column;
@@ -45,29 +41,55 @@
 
 }
 
+.cardHeader{
+    border-bottom: 2px solid rgba(130, 111, 102, 0.7);
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.factsTitle{
+    font-family: 'Griffy', cursive;
+    color: #bf9e8f;
+    font-size: 30px;
+    margin: 0;
+    text-shadow: -1px -1px 20px black,
+                  3px 3px 20px black,
+                  6px 6px 20px black;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+.categorizedFactsTitle{
+    color: #826F66 ;
+    font-size: 30px;
+}
+
+
 .saveButton, .nextButton{
-    color: #826F66 !important;
+    color: #826F66 ;
     font-size: 14px;
     font-weight: bold;
+    width: 90px;
+}
+
+.saveButton:hover, .nextButton:hover{
+    color: #826F66 ;
+    border: none;
+
 }
 .factsText{
-    padding: 20px;
+    padding: 10px;
+    margin: 0;
 }
-
-.innerSectionContainer{
-    background-color: rgba(0, 0, 0, 0.5) ;    
-    width: 100%;
-    position: relative;
-    z-index: 3;
-    padding: 20px;
-    border-radius: 20px;
-
-}
-
 
 .factsButtonContainer{
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     column-gap: 20px;
     width: 100%;
 

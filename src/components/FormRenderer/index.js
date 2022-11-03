@@ -1,25 +1,18 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import UserContext from "../../context/UserContext";
 import "antd/dist/antd.css";
-import {
-  Button,
-  Col,
-  DatePicker,
-  Drawer,
-  Form,
-  Input,
-  Row,
-  Select,
-  Space,
-} from "antd";
+import { Form, Input, Button } from "antd";
 
-const FormRenderer = ({ constants, initialValue, handleClick }) => {
+const FormRenderer = ({ constants, processFor, setIsModalOpen }) => {
+  const { updateIsUserRegistered, addNewUsers } = useContext(UserContext);
+
   const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    setIsModalOpen(false);
+    processFor === "signIn"
+      ? updateIsUserRegistered(values)
+      : processFor === "signUp"
+      ? addNewUsers(values)
+      : console.log("TEST");
   };
 
   const fromItemRenderer = () => {
@@ -49,10 +42,10 @@ const FormRenderer = ({ constants, initialValue, handleClick }) => {
       wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      {fromItemRenderer}
+      {fromItemRenderer()}
+      <Button htmlType="submit">Submit</Button>
     </Form>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -7,22 +7,25 @@ import FactsViewer from "./pages/FactsViewer";
 import FactsInSaved from "./pages/FactsInSaved";
 import ErrorPage from "./pages/ErrorPage";
 
-import { FactsProvider } from "./context/FactsContext";
-import { UserProvider } from "./context/UserContext";
+import UserContext from "./context/UserContext";
+
 function App() {
+  const { isLoggedIn } = useContext(UserContext);
+
   return (
     <BrowserRouter>
-      <FactsProvider>
-        <UserProvider>
-          <Header />
-          <Routes>
-            <Route path="/" exact element={<Main />} />
+      <Header />
+      <Routes>
+        <Route path="/" exact element={<Main />} />
+        <Route path="*" exact element={<ErrorPage />} />
+
+        {isLoggedIn && (
+          <>
             <Route path="/facts-viewer" exact element={<FactsViewer />} />
             <Route path="/facts-in-saved" exact element={<FactsInSaved />} />
-            <Route path="*" exact element={<ErrorPage />} />
-          </Routes>
-        </UserProvider>
-      </FactsProvider>
+          </>
+        )}
+      </Routes>
     </BrowserRouter>
   );
 }

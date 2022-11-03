@@ -1,10 +1,12 @@
 import React from "react";
 import FactsInBasket from "../FactsInBasket";
-import SignUp from "../SignUp";
-import SignIn from "../SignIn";
 
+import style from "./style.module.css";
 import "antd/dist/antd.css";
 import { Modal } from "antd";
+import FormRenderer from "../FormRenderer";
+import { signInConstants } from "../../constants/signInConstants";
+import { signUpConstants } from "../../constants/signUpConstants";
 
 const ModelRenderer = ({
   modalTitle,
@@ -22,16 +24,24 @@ const ModelRenderer = ({
   return (
     <div>
       <Modal
-        className={componentName === "FactsInBasket" ? "basketModal" : ""}
+        className={componentName === "FactsInBasket" ? style.basketModal : ""}
         title={modalTitle}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
       >
         {componentName === "SignUp" ? (
-          <SignUp />
+          <FormRenderer
+            processFor="signUp"
+            constants={signUpConstants}
+            setIsModalOpen={setIsModalOpen}
+          />
         ) : componentName === "SignIn" ? (
-          <SignIn />
+          <FormRenderer
+            processFor="signIn"
+            constants={signInConstants}
+            setIsModalOpen={setIsModalOpen}
+          />
         ) : (
           <FactsInBasket />
         )}

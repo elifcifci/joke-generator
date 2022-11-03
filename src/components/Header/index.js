@@ -1,22 +1,70 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useLocation } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 import { Link } from "react-router-dom";
 import { navigation } from "../../constants/navigationConstants";
+
 //Components
 import ModelRenderer from "../ModelRenderer";
+import { motion, useCycle } from "framer-motion";
 
 //Ant-design
 import "antd/dist/antd.css";
-import { Space, Breadcrumb, Drawer } from "antd";
-import { EllipsisOutlined } from "@ant-design/icons";
-import { useLocation } from "react-router-dom";
+import { Space } from "antd";
+import { EllipsisOutlined, LoginOutlined } from "@ant-design/icons";
+
 import style from "./style.module.css";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useCycle(false, true);
+  const [pageWidth, setPageWidth] = useState(0);
   const [isForSignUp, setIsForSignUp] = useState(false);
   const [isForSignIn, setIsForSignIn] = useState(false);
-  const [open, setOpen] = useState(false);
   const [pageTitle, setPageTitle] = useState("");
   const { pathname } = useLocation();
+  const { isLoggedIn, logout } = useContext(UserContext);
+
+  useEffect(() => {
+    let innerWidth = window.innerWidth;
+    setPageWidth(innerWidth);
+  }, [isOpen]);
+
+  const variants = {
+    open: {
+      x: -pageWidth,
+      opacity: 1,
+      display: "flex",
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 30,
+      },
+    },
+    close: {
+      x: 0,
+      opacity: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+    disappear: {
+      display: "none",
+      transition: {
+        delay: 0.3,
+      },
+    },
+    textOpen: {
+      opacity: 1,
+      transition: {
+        delay: 0.7,
+      },
+    },
+    textClose: {
+      opacity: 0,
+    },
+  };
 
   useEffect(() => {
     navigation.forEach((item) => {
@@ -34,11 +82,8 @@ const Header = () => {
     }
   };
 
-  const showDrawer = () => {
-    setOpen(true);
-  };
-  const onClose = () => {
-    setOpen(false);
+  const showMenu = () => {
+    setIsOpen((previous) => !previous);
   };
 
   return (
@@ -46,39 +91,83 @@ const Header = () => {
       <Space size="large" align="center" className={style.headerInnerContainer}>
         <div className={style.pageIconAndTitle}>
           {/* Chuck Norris Gif */}
-          <img
-            className={style.headerGif}
-            src="https://media.tenor.com/BupEc9JI6S0AAAAi/chuck-norris-minion.gif"
-            alt="Chuck Norris Minion Sticker - Chuck Norris Minion Emote Stickers"
-          />
-          <h1 className={style.headerTitle}>{pageTitle}</h1>
-        </div>
-        <EllipsisOutlined
-          onClick={showDrawer}
-          style={{ fontSize: "40px", color: "#bf9e8f" }}
-        />
-        <Drawer
-          title="Basic Drawer"
-          placement="right"
-          onClose={onClose}
-          open={open}
-          onClick={onClose}
-        >
-          <Breadcrumb>
-            <Breadcrumb.Item onClick={() => showModal("SignUp")}>
-              Sign Up
-            </Breadcrumb.Item>
-            <Breadcrumb.Item onClick={() => showModal("SignIn")}>
-              Sign In
-            </Breadcrumb.Item>
-          </Breadcrumb>
+          <Link className={style.navigationItem} to="/">
+            <img
+              className={style.headerGif}
+              src="https://media.tenor.com/BupEc9JI6S0AAAAi/chuck-norris-minion.gif"
+              alt="Chuck Norris Minion Sticker - Chuck Norris Minion Emote Stickers"
+            />
+          </Link>
 
-          <Space align="center">
-            <Link to="/">Main</Link>
-            <Link to="/facts-viewer">Facts</Link>
-            <Link to="/facts-in-saved">Saved Facts</Link>
-          </Space>
-        </Drawer>
+          <h1 className={style.headerTitle}>{pageTitle}</h1>
+
+          <EllipsisOutlined
+            rotate={isOpen ? 90 : 0}
+            onClick={showMenu}
+            style={{
+              fontSize: "40px",
+              position: "absolute",
+              right: 15,
+              top: 15,
+              color: "#bf9e8f",
+              zIndex: 9,
+            }}
+          />
+        </div>
+
+        <motion.div
+          variants={variants}
+          onClick={showMenu}
+          initial={{ opacity: 0 }}
+          animate={isOpen ? "open" : ["close", "disappear"]}
+          className={style.menuContainer}
+        >
+          {/* Navigation links */}
+          {isLoggedIn && (
+            <motion.div
+              variants={variants}
+              initial={{ opacity: 0 }}
+              animate={isOpen ? "textOpen" : "textClose"}
+              className={style.navigation}
+            >
+              <Link className={style.navigationItem} to="/">
+                Main
+              </Link>
+              <Link className={style.navigationItem} to="/facts-viewer">
+                Facts
+              </Link>
+              <Link className={style.navigationItem} to="/facts-in-saved">
+                Saved Facts
+              </Link>
+            </motion.div>
+          )}
+
+          {/* Registration and login*/}
+          {!isLoggedIn && (
+            <motion.div
+              variants={variants}
+              initial={{ opacity: 0 }}
+              animate={isOpen ? "textOpen" : "textClose"}
+              className={style.userRegistration}
+            >
+              <span onClick={() => showModal("SignUp")}>Sign Up</span>
+              <span> / </span>
+              <span onClick={() => showModal("SignIn")}>Sign In</span>
+            </motion.div>
+          )}
+
+          {isLoggedIn && (
+            <motion.div
+              variants={variants}
+              initial={{ opacity: 0 }}
+              animate={isOpen ? "textOpen" : "textClose"}
+              className={style.logoutIconContainer}
+              title="Logout"
+            >
+              <LoginOutlined onClick={() => logout()} />
+            </motion.div>
+          )}
+        </motion.div>
       </Space>
 
       {isForSignUp && (

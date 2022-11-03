@@ -3,11 +3,12 @@
 }
 
 .factsCategories {
-    width: 200px;
+    width: 100px;
     border: none;
     outline: none;
 }
-.factsCategories::content{
-    border: solid;
+.factsCategories:hover{
+    border: none;
+    outline: none;
 
 }

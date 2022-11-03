@@ -28,6 +28,7 @@ const Filter = () => {
     <div>
       <Select
         allowClear
+        notFoundContent
         autoFocus={true}
         defaultValue="Random"
         showSearch

@@ -1,8 +1,8 @@
 export const userList = [
   {
     id: 0,
-    username: "Test",
-    surname: "Test",
+    username: "test",
+    surname: "test",
     password: "a1234",
   },
   {
@@ -10,23 +10,5 @@ export const userList = [
     username: "Leanne",
     surname: "Bret",
     password: "123abc",
-  },
-  {
-    id: 2,
-    username: "Ervin",
-    surname: "Antonette",
-    password: "Shanna.meliss4",
-  },
-  {
-    id: 3,
-    username: "Clementine",
-    surname: "Samantha",
-    password: "BauchWillEatU",
-  },
-  {
-    id: 4,
-    username: "Patricia",
-    surname: "Karianne",
-    password: "julianne.OConner",
   },
 ];
