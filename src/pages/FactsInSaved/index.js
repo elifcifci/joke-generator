@@ -23,7 +23,7 @@ const FactsInSaved = () => {
                 deleteFactsInBasketOrRemoveFromSavedFact(index, "delete")
               }
               style={{
-                color: "#bf9e8f",
+                color: "var(--primary-color)",
                 fontSize: 20,
               }}
             />

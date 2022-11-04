@@ -1,7 +1,8 @@
 .errorPageContainer{
     height: 100vh;
-    background-color: #bf9e8f;
+    background-color: #3A3845;
     display: flex;
+    border: solid;
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
@@ -9,39 +10,68 @@
 }
 
 .errorPageInnerContainer{
-    background-color: #715f56;
-    padding: 20px;
-    border-radius: 20px;
-    min-height: 300px;
+    background-color:  rgba(0, 0, 0, 0.24);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    display: flex;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 300px;
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
 }
+
 .errorPageTitle{
-    color: #715f56 !important;
-    text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.826),
-    1px 0px 1px rgba(0, 0, 0, 0.674),
-    0px 1px 3px rgba(0, 0, 0, 0.785);
-    font-family: 'Griffy', cursive;
-    font-size: 80px !important;
+    color:  rgba(255, 255, 255, 0.9) !important;
+    font-family: var(--title-font-family);
+    font-size: 70px !important;
     margin: 0 !important;
 }
+
+.errorPageGif{
+    width: 100px;
+    height: 130px;
+    border-radius: 10px;
+}
+
 .errorPageText{
     font-size: 16px;
     font-weight: bold;
     color: white;
     text-align: center;
     margin: 0;
+    max-width: 300px;
 }
 
 .errorPageLink{
-    color: #826F66;
+    color: var(--secondary-color);
     font-weight: bold;
     display: block !important;
-    color: #826F66 !important;
+    color: var(--secondary-color) !important;
     background-color: white;
     padding: 8px 20px;
+    box-sizing: border-box;
     border-radius: 15px;
+}
 
+@media(min-width:768px){
+    .errorPageInnerContainer{
+        position: relative;
+    }
+
+    .errorPageLink{
+        position: absolute;
+        bottom: -90px;
+        font-size: 20px;
+        transform: translateX(-50%);
+        left: 50%;
+    }
+    .errorPageGif{
+        width: 130px;
+        height: 150px;
+    }
+    .errorPageText{
+    font-size: 20px;
+
+    }
+    
 }

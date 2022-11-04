@@ -4,7 +4,7 @@ import style from "./style.module.css";
 
 //Ant-design
 import "antd/dist/antd.css";
-import { Button, Space, Typography } from "antd";
+import { Space, Typography } from "antd";
 const { Title } = Typography;
 
 const ErrorPage = () => {
@@ -17,13 +17,9 @@ const ErrorPage = () => {
         {/* Chuck Norris Gif */}
         <Space>
           <img
+            className={style.errorPageGif}
             src="https://media.tenor.com/GdF28omU-1YAAAAC/chuck-norris-kick-action.gif"
-            style={{
-              width: "100px",
-              height: "130px",
-              borderRadius: "20px",
-            }}
-            alt="Chuck Norris Kick Action GIF - Chuck Norris Kick Action Walker Texas Ranger GIFs"
+            alt="Chuck Norris kick action gif"
           />
           <p className={style.errorPageText}>
             The page you are looking for was not found or you are not logged in!{" "}

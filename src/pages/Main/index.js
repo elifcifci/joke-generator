@@ -13,31 +13,33 @@ const Main = () => {
         <section
           key={constant.id}
           id={style[constant.id]}
-          className={style.sections}
+          className={style.sectionContainer}
         >
-          <div className={style.sectionImageContainer}>
-            <img
-              className={style.chuckNorrisPictures}
-              src={constant.imgSrc}
-              alt={constant.imgAlt}
-            />
-          </div>
+          <div className={style.innerContainer}>
+            <div className={style.sectionImageContainer}>
+              <img
+                className={style.chuckNorrisPictures}
+                src={constant.imgSrc}
+                alt={constant.imgAlt}
+              />
+            </div>
 
-          <div className={style.sectionText}>
-            <h1 className={style.sectionTitle}>{constant.sectionTitle}</h1>
-            <p>
-              {constant.sectionText}{" "}
-              <a
-                target="_blank"
-                title={constant.linkTitle}
-                href={constant.linkHref}
-                className={style.sectionLinks}
-              >
-                {" "}
-                {constant.linkText}
-              </a>
-              .
-            </p>
+            <div className={style.textsContainer}>
+              <h1 className={style.sectionTitle}>{constant.sectionTitle}</h1>
+              <p>
+                {constant.sectionText}{" "}
+                <a
+                  target="_blank"
+                  title={constant.linkTitle}
+                  href={constant.linkHref}
+                  className={style.sectionLinks}
+                >
+                  {" "}
+                  {constant.linkText}
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </section>
       );
@@ -46,7 +48,7 @@ const Main = () => {
 
   return (
     <div className={style.mainPageContainer}>
-      <Carousel autoplay>{cardRenderer()}</Carousel>
+      <Carousel className={style.carousel}>{cardRenderer()}</Carousel>
     </div>
   );
 };

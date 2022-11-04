@@ -1,5 +1,5 @@
 .factsCategories, .factsCategoriesOption{
-    color: #826F66;
+    color: var(--secondary-color);
 }
 
 .factsCategories {

@@ -114,7 +114,7 @@ export const UserProvider = ({ children }) => {
       signIn(userKnowledge);
     } else if (isSignIn && filteredUser[0] === undefined) {
       setIsModalOpen(true);
-      message.error("Your name or password is incorrect.");
+      message.error("Your name or password is incorrect.", 0.6);
     }
 
     if (isSignUp && filteredUser[0] === undefined) {
@@ -122,7 +122,7 @@ export const UserProvider = ({ children }) => {
       signUp(userKnowledge);
     } else if (isSignUp && filteredUser[0] !== undefined > 0) {
       setIsModalOpen(true);
-      message.error("This username is taken. Try another username.");
+      message.error("This username is taken. Try another username.", 0.6);
     }
   };
 

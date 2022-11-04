@@ -58,7 +58,7 @@
 }
 
 .saveButton, .saveButton:hover .removeButton{
-    color: #826F66 ;
+    color: var(--secondary-color) ;
     font-size: 14px;
     font-weight: bold;
     width: 90px;
@@ -66,7 +66,7 @@
 }
 
 .removeButton , .removeButton:hover{
-    color: #9c2121 ;
+    color: var(--warning-red) ;
     border: none;
     font-weight: bold;
 
@@ -96,11 +96,11 @@
     z-index: 10;
     border: none;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    color: #826F66;
+    color: var(--secondary-color);
     font-weight: bold;
 }
 
 .draggableButton:hover, .draggableButton:active {
-    color: #826F66;
+    color: var(--secondary-color);
 
 }

@@ -109,7 +109,7 @@ const Header = () => {
               position: "absolute",
               right: 5,
               top: 18,
-              color: "#bf9e8f",
+              color: "var(--primary-color)",
               zIndex: 9,
             }}
           />

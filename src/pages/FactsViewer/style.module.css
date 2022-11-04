@@ -50,8 +50,8 @@
 }
 
 .factsTitle{
-    font-family: 'Griffy', cursive;
-    color: #bf9e8f;
+    font-family: var(--header-font-family);
+    color: var(--primary-color);
     font-size: 30px;
     margin: 0;
     text-shadow: -1px -1px 20px black,
@@ -63,14 +63,14 @@
 }
 
 .saveButton, .nextButton{
-    color: #826F66 ;
+    color: var(--secondary-color) ;
     font-size: 14px;
     font-weight: bold;
     width: 90px;
 }
 
 .saveButton:hover, .nextButton:hover{
-    color: #826F66 ;
+    color: var(--secondary-color) ;
     border: none;
 
 }
@@ -104,11 +104,11 @@
     z-index: 10;
     border: none;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    color: #826F66;
+    color: var(--secondary-color);
     font-weight: bold;
 }
 
 .draggableButton:hover, .draggableButton:active {
-    color: #826F66;
+    color: var(--secondary-color);
 
 }

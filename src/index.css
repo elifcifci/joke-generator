@@ -1,9 +1,23 @@
 *, *::before, *::after {
   box-sizing: border-box;
+  font-family: var(--general-font-family) ;
 }
 
 * {
   margin: 0;
+}
+
+:root {
+  --primary-color: #bf9e8f;
+  --secondary-color: #826F66;
+  --tertiary-color: #F7CCAC;
+  --background-black: #33313B;
+  --text-color: #FCF8E8;
+  --warning-red: #9c2121;
+  --header-font-family: 'Griffy', cursive;
+  --title-font-family: 'El Messiri', sans-serif;
+  --general-font-family: 'Ubuntu Condensed', sans-serif;;
+
 }
 
 html, body {
@@ -22,3 +36,4 @@ body{
   overflow-x: hidden;
  } 
 }
+
