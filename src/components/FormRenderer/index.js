@@ -4,15 +4,12 @@ import "antd/dist/antd.css";
 import { Form, Input, Button } from "antd";
 
 const FormRenderer = ({ constants, processFor, setIsModalOpen }) => {
-  const { updateIsUserRegistered, addNewUsers } = useContext(UserContext);
+  const { isUserRegistered } = useContext(UserContext);
 
   const onFinish = (values) => {
-    setIsModalOpen(false);
     processFor === "signIn"
-      ? updateIsUserRegistered(values)
-      : processFor === "signUp"
-      ? addNewUsers(values)
-      : console.log("TEST");
+      ? isUserRegistered(values, "signIn", setIsModalOpen)
+      : isUserRegistered(values, "signUp", setIsModalOpen);
   };
 
   const fromItemRenderer = () => {

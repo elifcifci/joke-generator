@@ -1,15 +1,9 @@
 export const signInConstants = [
   {
     id: "sing-in-name",
-    label: "Name",
+    label: "Username",
     name: "username",
     rules: [{ required: true, message: "Please input your name!" }],
-  },
-  {
-    id: "sing-in-surname",
-    label: "Surname",
-    name: "surname",
-    rules: [{ required: true, message: "Please input your surname!" }],
   },
   {
     id: "sing-in-password",

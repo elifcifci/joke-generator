@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 const FactsContext = createContext();
 
@@ -12,16 +12,16 @@ export const FactsProvider = ({ children }) => {
   const [facts, setFacts] = useState(initialStateTemplate);
   const [factsInBasket, setFactsInBasket] = useState([]);
   const [factsInSaved, setFactsInSaved] = useState([]);
-
   useEffect(() => {
     openNextFact();
+
     //take categories in the API
     axios.get(`${baseUrl}categories`).then((response) => {
       setFactCategories(["random", ...response.data]);
     });
 
-    localStorage.getItem("saved-jokes") !== null &&
-      setFactsInSaved([...JSON.parse(localStorage.getItem("saved-jokes"))]);
+    localStorage.getItem("saved-facts") !== null &&
+      setFactsInSaved([...JSON.parse(localStorage.getItem("saved-facts"))]);
   }, []);
 
   useEffect(() => {
@@ -30,8 +30,8 @@ export const FactsProvider = ({ children }) => {
 
   useEffect(() => {
     factsInSaved.length !== 0
-      ? localStorage.setItem("saved-jokes", JSON.stringify(factsInSaved))
-      : factsInSaved.length === 0 && localStorage.removeItem("saved-jokes");
+      ? localStorage.setItem("saved-facts", JSON.stringify(factsInSaved))
+      : factsInSaved.length === 0 && localStorage.removeItem("saved-facts");
   }, [factsInSaved]);
 
   const openNextFact = () => {
@@ -85,12 +85,15 @@ export const FactsProvider = ({ children }) => {
 
     // Users can not add the fact from randomJoke or categorizedJoke to factBasket, if factBasket and factSaved have the same fact.
     // Users can not add the fact from factBasket to factSaved, if factSaved has the same fact.
-    targetPlace === "toBasket"
-      ? isSameFact.haveSameFactInBasket === false &&
-        isSameFact.haveSameFactInSaved === false &&
-        setFactsInBasket([...factsInBasket, fact])
-      : isSameFact.haveSameFactInSaved === false &&
-        setFactsInSaved([...factsInSaved, fact]);
+    if (
+      targetPlace === "toBasket" &&
+      isSameFact.haveSameFactInBasket === false &&
+      isSameFact.haveSameFactInSaved === false
+    ) {
+      setFactsInBasket([...factsInBasket, fact]);
+    } else if (isSameFact.haveSameFactInSaved === false) {
+      setFactsInSaved([...factsInSaved, fact]);
+    }
   };
 
   const deleteFactsInBasketOrRemoveFromSavedFact = (index, action) => {

@@ -31,8 +31,8 @@ const Header = () => {
       display: "flex",
       transition: {
         type: "spring",
-        stiffness: 100,
-        damping: 30,
+        stiffness: 200,
+        damping: 20,
       },
     },
     close: {
@@ -53,7 +53,7 @@ const Header = () => {
     textOpen: {
       opacity: 1,
       transition: {
-        delay: 0.7,
+        delay: 0.3,
       },
     },
     textClose: {
@@ -105,10 +105,10 @@ const Header = () => {
             rotate={isOpen ? 90 : 0}
             onClick={showMenu}
             style={{
-              fontSize: "40px",
+              fontSize: "30px",
               position: "absolute",
               right: 5,
-              top: 15,
+              top: 18,
               color: "#bf9e8f",
               zIndex: 9,
             }}
@@ -130,18 +130,29 @@ const Header = () => {
               animate={isOpen ? "textOpen" : "textClose"}
               className={style.navigation}
             >
-              <Link className={style.navigationItem} to="/">
-                Main
-              </Link>
-              <Link className={style.navigationItem} to="/facts-viewer">
-                Facts
-              </Link>
-              <Link className={style.navigationItem} to="/facts-in-basket">
-                Basket
-              </Link>
-              <Link className={style.navigationItem} to="/facts-in-saved">
-                Saved
-              </Link>
+              <div className={style.linkContainer}>
+                {navigation.map((item) => {
+                  return (
+                    <Link
+                      key={item.navTitle}
+                      className={style.navigationItem}
+                      to={item.link}
+                    >
+                      {item.navTitle}
+                    </Link>
+                  );
+                })}
+              </div>
+              <motion.div
+                variants={animationConfig}
+                initial={{ opacity: 0 }}
+                animate={isOpen ? "textOpen" : "textClose"}
+                className={style.logoutIconContainer}
+                title="Logout"
+                onClick={() => logout()}
+              >
+                <LoginOutlined className={style.logoutIcon} />
+              </motion.div>
             </motion.div>
           )}
 
@@ -156,18 +167,6 @@ const Header = () => {
               <span onClick={() => showModal("SignUp")}>Sign Up</span>
               <span> / </span>
               <span onClick={() => showModal("SignIn")}>Sign In</span>
-            </motion.div>
-          )}
-
-          {isLoggedIn && (
-            <motion.div
-              variants={animationConfig}
-              initial={{ opacity: 0 }}
-              animate={isOpen ? "textOpen" : "textClose"}
-              className={style.logoutIconContainer}
-              title="Logout"
-            >
-              <LoginOutlined onClick={() => logout()} />
             </motion.div>
           )}
         </motion.div>
