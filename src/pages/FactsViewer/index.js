@@ -10,7 +10,7 @@ const JokeViewer = () => {
     useContext(FactsContext);
 
   const success = () => {
-    message.success("This is a success message");
+    message.success("The fact is in the basket.", 0.6);
   };
 
   const handleClick = (fact, targetPlace) => {

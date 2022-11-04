@@ -57,22 +57,21 @@
     justify-content: space-between;
 }
 
-.saveButton, .removeButton{
+.saveButton, .saveButton:hover .removeButton{
     color: #826F66 ;
     font-size: 14px;
     font-weight: bold;
     width: 90px;
-}
-
-.removeButton{
-    color: #9c2121 ;
-
-}
-.saveButton:hover, .removeButton:hover{
-    color: #826F66 ;
     border: none;
+}
+
+.removeButton , .removeButton:hover{
+    color: #9c2121 ;
+    border: none;
+    font-weight: bold;
 
 }
+
 .factsText{
     padding: 10px;
     margin: 0;

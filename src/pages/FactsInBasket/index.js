@@ -11,7 +11,7 @@ const FactsInBasket = () => {
   } = useContext(FactsContext);
 
   const success = () => {
-    message.success("This facts is saved");
+    message.success("This facts is saved", 0.6);
   };
 
   const handleClick = (joke, targetPlace) => {
