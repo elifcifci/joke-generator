@@ -1,9 +1,11 @@
 import React from "react";
+import FormRenderer from "../FormRenderer";
 
-import style from "./style.module.css";
+//Ant Design
 import "antd/dist/antd.css";
 import { Modal } from "antd";
-import FormRenderer from "../FormRenderer";
+
+//Constants
 import { signInConstants } from "../../constants/signInConstants";
 import { signUpConstants } from "../../constants/signUpConstants";
 
@@ -23,11 +25,11 @@ const ModelRenderer = ({
   return (
     <div>
       <Modal
-        className={style.basketModal}
         title={modalTitle}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={null}
       >
         {componentName === "SignUp" ? (
           <FormRenderer

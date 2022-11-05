@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const FactsContext = createContext();
 

@@ -1,41 +1,45 @@
-.factsInSavedContainer {
-    position: relative;
-    width: 100%;
-    height: calc(100vh - 70px);
+.factsContainer {
+    min-height: 100vh;
     box-sizing: border-box;
-    padding: 70px 0 20px 0;
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-
+.backgroundImage{
+    object-fit: cover;
+    position: fixed;
+    z-index: 1;
+    top: 70px;
+    width: 100%;
+    height: 100%;
+    filter: brightness(70%);
+    
 }
 
 .factsInSavedList{
-    padding: 20px;
     position: relative;
     z-index: 2;
     display: grid;
+    padding: 20px;
     row-gap: 20px;
-    
-
 }
+
 .factsInSavedListItem{
     list-style-type: none;
     color: white;
     background-color: rgba(0, 0, 0, 0.6) ;    
     padding: 20px;
-    border-radius: 20px;
-    font-size: 16px;
-
+    border-radius: 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-
-.backgroundImage{
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 70px;
-    z-index: 1;
-    filter: brightness(70%);
-
+.closeIcon{
+    color: rgb(225, 8, 8);
+    font-size: 20px;
 }
 
 .noSavedFactContainer{
@@ -56,12 +60,33 @@
     text-align: center;
 }
 
-.titleContainer{
-    position: relative;
-    z-index: 2;
+@media (min-width: 425px){
+    .factsInSavedList{
+        padding: 40px 30px;
+    }
 }
 
-.title{
-    color: white;
+@media (min-width: 768px){
+    .factsInSavedListItem{
+        max-width: 800px;
+        min-height: 150px;
+        row-gap: 30px;
+        padding: 30px;
+    }
 
+    .factsInSavedText{
+        font-size: 18px;
+        margin: 0;
+        padding-right: 10px;
+    }
+}
+
+@media (min-width:1024px){
+    .factsInSavedText{
+        font-size: 20px;
+    }
+
+    .closeIcon{
+        font-size: 26px;
+    }
 }

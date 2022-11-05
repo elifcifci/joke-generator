@@ -48,7 +48,9 @@ const Main = () => {
 
   return (
     <div className={style.mainPageContainer}>
-      <Carousel className={style.carousel}>{cardRenderer()}</Carousel>
+      <Carousel autoplay className={style.carousel}>
+        {cardRenderer()}
+      </Carousel>
     </div>
   );
 };

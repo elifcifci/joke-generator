@@ -1,65 +1,24 @@
-import React, { useState, useEffect, useContext } from "react";
+//React
+import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-
-import UserContext from "../../context/UserContext";
-import { navigation } from "../../constants/navigationConstants";
-
-//Components
-import ModelRenderer from "../ModelRenderer";
 
 //Ant-design
 import "antd/dist/antd.css";
 import { Space } from "antd";
-import { EllipsisOutlined, LoginOutlined } from "@ant-design/icons";
+import { EllipsisOutlined } from "@ant-design/icons";
 
-import { motion, useCycle } from "framer-motion";
+//Style and animation
+import { useCycle } from "framer-motion";
 import style from "./style.module.css";
 
+import NavbarMenu from "../NavbarMenu";
+import { navigation } from "../../constants/navigationConstants";
+
 const Header = () => {
-  const [isOpen, setIsOpen] = useCycle(false, true);
-  const [pageWidth, setPageWidth] = useState(0);
-  const [isForSignUp, setIsForSignUp] = useState(false);
-  const [isForSignIn, setIsForSignIn] = useState(false);
+  const [isOpen, cycleIsOpen] = useCycle(false, true);
   const [pageTitle, setPageTitle] = useState("");
   const { pathname } = useLocation();
-  const { isLoggedIn, logout } = useContext(UserContext);
-
-  const animationConfig = {
-    open: {
-      x: -pageWidth,
-      opacity: 1,
-      display: "flex",
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 20,
-      },
-    },
-    close: {
-      x: 0,
-      opacity: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
-      },
-    },
-    disappear: {
-      display: "none",
-      transition: {
-        delay: 0.3,
-      },
-    },
-    textOpen: {
-      opacity: 1,
-      transition: {
-        delay: 0.3,
-      },
-    },
-    textClose: {
-      opacity: 0,
-    },
-  };
+  const [pageWidth, setPageWidth] = useState(0);
 
   useEffect(() => {
     let innerWidth = window.innerWidth;
@@ -74,121 +33,31 @@ const Header = () => {
     });
   }, [pathname]);
 
-  const showModal = (componentName) => {
-    if (componentName === "SignUp") {
-      setIsForSignUp(true);
-    } else {
-      setIsForSignIn(true);
-    }
-  };
-
   const showMenu = () => {
-    setIsOpen((previous) => !previous);
+    cycleIsOpen();
   };
 
   return (
-    <div className={style.headerContainer}>
-      <Space size="large" align="center" className={style.headerInnerContainer}>
-        <div className={style.pageIconAndTitle}>
-          {/* Chuck Norris Gif */}
-          <Link className={style.navigationItem} to="/">
-            <img
-              className={style.headerGif}
-              src="https://media.tenor.com/BupEc9JI6S0AAAAi/chuck-norris-minion.gif"
-              alt="Chuck Norris Minion Sticker - Chuck Norris Minion Emote Stickers"
-            />
-          </Link>
-
-          <h1 className={style.headerTitle}>{pageTitle}</h1>
-
-          <EllipsisOutlined
-            rotate={isOpen ? 90 : 0}
-            onClick={showMenu}
-            style={{
-              fontSize: "30px",
-              position: "absolute",
-              right: 5,
-              top: 18,
-              color: "var(--primary-color)",
-              zIndex: 9,
-            }}
+    <Space size="large" align="center" className={style.headerContainer}>
+      <div className={style.pageIconAndTitle}>
+        {/* Chuck Norris Gif */}
+        <Link className={style.headerGifContainer} to="/">
+          <img
+            className={style.headerGif}
+            src="https://media.tenor.com/BupEc9JI6S0AAAAi/chuck-norris-minion.gif"
+            alt="Chuck Norris Minion Sticker - Chuck Norris Minion Emote Stickers"
           />
-        </div>
+        </Link>
 
-        <motion.div
-          variants={animationConfig}
+        <h1 className={style.headerTitle}>{pageTitle}</h1>
+        <EllipsisOutlined
+          rotate={isOpen ? 90 : 0}
           onClick={showMenu}
-          initial={{ opacity: 0 }}
-          animate={isOpen ? "open" : ["close", "disappear"]}
-          className={style.menuContainer}
-        >
-          {/* Navigation links */}
-          {isLoggedIn && (
-            <motion.div
-              variants={animationConfig}
-              initial={{ opacity: 0 }}
-              animate={isOpen ? "textOpen" : "textClose"}
-              className={style.navigation}
-            >
-              <div className={style.linkContainer}>
-                {navigation.map((item) => {
-                  return (
-                    <Link
-                      key={item.navTitle}
-                      className={style.navigationItem}
-                      to={item.link}
-                    >
-                      {item.navTitle}
-                    </Link>
-                  );
-                })}
-              </div>
-              <motion.div
-                variants={animationConfig}
-                initial={{ opacity: 0 }}
-                animate={isOpen ? "textOpen" : "textClose"}
-                className={style.logoutIconContainer}
-                title="Logout"
-                onClick={() => logout()}
-              >
-                <LoginOutlined className={style.logoutIcon} />
-              </motion.div>
-            </motion.div>
-          )}
-
-          {/* Registration and login*/}
-          {!isLoggedIn && (
-            <motion.div
-              variants={animationConfig}
-              initial={{ opacity: 0 }}
-              animate={isOpen ? "textOpen" : "textClose"}
-              className={style.userRegistration}
-            >
-              <span onClick={() => showModal("SignUp")}>Sign Up</span>
-              <span> / </span>
-              <span onClick={() => showModal("SignIn")}>Sign In</span>
-            </motion.div>
-          )}
-        </motion.div>
-      </Space>
-
-      {isForSignUp && (
-        <ModelRenderer
-          modalTitle="Sign Up"
-          componentName="SignUp"
-          setIsModalOpen={setIsForSignUp}
-          isModalOpen={isForSignUp}
+          className={style.ellipsis}
         />
-      )}
-      {isForSignIn && (
-        <ModelRenderer
-          modalTitle="Sign In"
-          componentName="SignIn"
-          setIsModalOpen={setIsForSignIn}
-          isModalOpen={isForSignIn}
-        />
-      )}
-    </div>
+      </div>
+      <NavbarMenu isOpen={isOpen} showMenu={showMenu} />
+    </Space>
   );
 };
 

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-
 import FactsContext from "../../context/FactsContext";
 import style from "./style.module.css";
 
+//Ant Design
 import { Select } from "antd";
 const { Option } = Select;
 
-const Filter = () => {
+const CategoryList = () => {
   const { factCategories, setSelectedCategory } = useContext(FactsContext);
 
   const renderButton = () => {
@@ -36,11 +36,6 @@ const Filter = () => {
         placeholder="Search to Select"
         optionFilterProp="children"
         filterOption={(input, option) => option.children.includes(input)}
-        filterSort={(optionA, optionB) =>
-          optionA.children
-            .toLowerCase()
-            .localeCompare(optionB.children.toLowerCase())
-        }
         onChange={(event) => setSelectedCategory(event)}
       >
         {renderButton()}
@@ -49,4 +44,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default CategoryList;

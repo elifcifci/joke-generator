@@ -71,14 +71,13 @@
 
 @media(min-width:600px){
     .sectionContainer{
-        background-color: var(--background-black);
         flex-direction: row;
         column-gap: 20px;
         padding: 40px;
     }
     .innerContainer{
         border-radius: 8px;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: var(--background-black);
         padding: 20px;
         display: flex;
         align-items: center;

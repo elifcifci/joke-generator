@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import FactsContext from "../../context/FactsContext";
-import Filter from "../../components/Filter";
+import CategoryList from "../../components/CategoryList";
 import style from "./style.module.css";
 import "antd/dist/antd.css";
 import { Button, message } from "antd";
@@ -27,7 +27,7 @@ const JokeViewer = () => {
         <div className={style.factCardContainer}>
           <div className={style.cardHeader}>
             <h2 className={style.factsTitle}>Categories: </h2>
-            <Filter />
+            <CategoryList />
           </div>
           <div className={style.factsCard}>
             <p className={style.factsText}>{facts.value}</p>
@@ -36,11 +36,14 @@ const JokeViewer = () => {
       </section>
 
       <section className={style.factsButtonContainer}>
-        <Button className={style.nextButton} onClick={openNextFact}>
+        <Button
+          className={`${style.nextButton} ${style.buttons}`}
+          onClick={openNextFact}
+        >
           Next
         </Button>
         <Button
-          className={style.saveButton}
+          className={`${style.saveButton} ${style.buttons}`}
           onClick={() => handleClick(facts, "toBasket")}
         >
           Basket
