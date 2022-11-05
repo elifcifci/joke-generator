@@ -19,13 +19,13 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" exact element={<Main />} />
-        <Route path="*" exact element={<ErrorPage />} />
 
         {isLoggedIn && (
           <>
             <Route path="/facts-viewer" exact element={<FactsViewer />} />
             <Route path="/facts-in-saved" exact element={<FactsInSaved />} />
             <Route path="/facts-in-basket" exact element={<FactsInBasket />} />
+            <Route path="*" exact element={<ErrorPage />} />
           </>
         )}
       </Routes>

@@ -1,77 +1,75 @@
-.errorPageContainer{
-    height: 100vh;
-    background-color: #3A3845;
-    display: flex;
-    border: solid;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 20px;
+.errorPageContainer {
+  height: 100vh;
+  background-color: #3a3845;
+  display: flex;
+  border: solid;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 20px;
 }
 
-.errorPageInnerContainer{
-    background-color:  rgba(0, 0, 0, 0.24);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 20px;
-    border-radius: 10px;
-    min-height: 300px;
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
+.errorPageInnerContainer {
+  background-color: rgba(0, 0, 0, 0.24);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 300px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.errorPageTitle{
-    color:  rgba(255, 255, 255, 0.9) !important;
-    font-family: var(--title-font-family);
-    font-size: 70px !important;
-    margin: 0 !important;
+.errorPageTitle {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-family: var(--title-font-family);
+  font-size: 70px !important;
+  margin: 0 !important;
 }
 
-.errorPageGif{
-    width: 100px;
-    height: 130px;
-    border-radius: 10px;
+.errorPageGif {
+  width: 100px;
+  height: 130px;
+  border-radius: 10px;
 }
 
-.errorPageText{
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    margin: 0;
-    max-width: 300px;
+.errorPageText {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0;
+  max-width: 300px;
 }
 
-.errorPageLink{
-    color: var(--secondary-color);
-    font-weight: bold;
-    display: block !important;
-    color: var(--secondary-color) !important;
-    background-color: white;
-    padding: 8px 20px;
-    box-sizing: border-box;
-    border-radius: 15px;
+.errorPageLink {
+  color: var(--secondary-color);
+  font-weight: bold;
+  display: block !important;
+  color: var(--secondary-color) !important;
+  background-color: white;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  border-radius: 15px;
 }
 
-@media(min-width:768px){
-    .errorPageInnerContainer{
-        position: relative;
-    }
+@media (min-width: 768px) {
+  .errorPageInnerContainer {
+    position: relative;
+  }
 
-    .errorPageLink{
-        position: absolute;
-        bottom: -90px;
-        font-size: 20px;
-        transform: translateX(-50%);
-        left: 50%;
-    }
-    .errorPageGif{
-        width: 130px;
-        height: 150px;
-    }
-    .errorPageText{
+  .errorPageLink {
+    position: absolute;
+    bottom: -90px;
     font-size: 20px;
-
-    }
-    
+    transform: translateX(-50%);
+    left: 50%;
+  }
+  .errorPageGif {
+    width: 130px;
+    height: 150px;
+  }
+  .errorPageText {
+    font-size: 20px;
+  }
 }

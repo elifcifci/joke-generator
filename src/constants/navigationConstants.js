@@ -7,19 +7,19 @@ export const navigation = [
   },
   {
     id: "facts-viewer",
-    title: "CNF | Facts Viewer",
+    title: "| Facts Viewer",
     navTitle: "Facts",
     link: "/facts-viewer",
   },
   {
     id: "facts-in-basket",
-    title: "CNF | Facts in Basket",
+    title: "| Facts in Basket",
     navTitle: "Basket",
     link: "/facts-in-basket",
   },
   {
     id: "facts-in-saved",
-    title: "CNF | Saved Facts",
+    title: "| Saved Facts",
     navTitle: "Saved",
     link: "/facts-in-saved",
   },

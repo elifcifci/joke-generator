@@ -14,9 +14,10 @@ const FactsList = () => {
     message.success("This facts is saved", 0.6);
   };
 
-  const handleClick = (joke, targetPlace) => {
+  const handleClick = (index, joke, targetPlace) => {
     addInBasketOrSavedFacts(joke, targetPlace);
     success();
+    deleteFactsInBasketOrRemoveFromSavedFact(index, "remove");
   };
 
   return (
@@ -28,7 +29,7 @@ const FactsList = () => {
             <div className={style.factsButtonContainer}>
               <Button
                 className={`${style.saveButton} ${style.buttons}`}
-                onClick={() => handleClick(fact, "toSaved")}
+                onClick={() => handleClick(index, fact, "toSaved")}
               >
                 Save
               </Button>

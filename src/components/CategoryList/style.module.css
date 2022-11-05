@@ -1,24 +1,26 @@
-.factsCategories, .factsCategoriesOption{
-    color: var(--secondary-color);
+.factsCategories,
+.factsCategoriesOption {
+  color: var(--secondary-color);
 }
 
 .factsCategories {
-    width: 100px;
+  width: 100px;
 }
 
-@media(min-width: 425px){
-    .factsCategories {
-        width: 150px;
-    }
+@media (min-width: 425px) {
+  .factsCategories {
+    width: 150px;
+  }
 }
 
-@media(min-width: 768px){
-    .factsCategories {
-        width: 200px;
-        box-sizing:content-box,;
-    }
+@media (min-width: 768px) {
+  .factsCategories {
+    width: 200px;
+    box-sizing: content-box;
+  }
 
-    .factsCategories, .factsCategoriesOption{
-        font-size: large;
-    }
+  .factsCategories,
+  .factsCategoriesOption {
+    font-size: large;
+  }
 }

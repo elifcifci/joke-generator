@@ -1,161 +1,169 @@
-.backgroundImage{
-    position: fixed;
-    z-index: 1;
-    top: 70px;
-    filter: brightness(70%);
-    object-fit:cover;
-    width: 100%;
-    height: 100%;
+.backgroundImage {
+  position: fixed;
+  z-index: 1;
+  top: 70px;
+  filter: brightness(70%);
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
-.factsSection{
-    color: white;
+.factsSection {
+  color: white;
+  font-size: 18px;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+}
+
+.factCardContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.factsCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  min-height: 200px;
+  position: relative;
+  z-index: 2;
+}
+
+.cardHeader {
+  border-bottom: 2px solid rgba(130, 111, 102, 0.7);
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.factsTitle {
+  font-family: var(--header-font-family);
+  color: var(--primary-color);
+  font-size: 30px;
+  margin: 0;
+  text-shadow: -1px -1px 20px black, 3px 3px 20px black, 6px 6px 20px black;
+  position: relative;
+  z-index: 2;
+}
+
+.saveButton,
+.nextButton {
+  color: var(--secondary-color);
+  font-size: 14px;
+  font-weight: bold;
+  width: 90px;
+}
+
+.buttons:hover,
+.buttons:active,
+.buttons:focus {
+  color: var(--secondary-color) !important;
+  border: none;
+}
+
+.factsText {
+  padding: 10px;
+  margin: 0;
+  word-break: break-word;
+}
+
+.factsButtonContainer {
+  position: absolute;
+  bottom: 20px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+  width: 100%;
+}
+
+.openBasketFactsButtonSection {
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  background-color: transparent;
+  z-index: 9;
+}
+
+.draggableButton {
+  cursor: move;
+  z-index: 10;
+  border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.draggableButton:hover,
+.draggableButton:active {
+  color: var(--secondary-color);
+}
+
+@media (min-width: 425px) {
+  .cardHeader {
+    justify-content: flex-start;
+  }
+
+  .factsTitle {
+    padding-right: 30px;
+  }
+}
+
+@media (min-width: 600px) {
+  .factsSection {
+    padding: 0 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .factsTitle {
+    padding-right: 30px;
+    font-size: 36px;
+  }
+
+  .factsText {
+    font-size: 20px;
+  }
+
+  .factCardContainer {
+    max-width: 800px;
+  }
+
+  .backgroundImage {
+    top: 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .buttons {
     font-size: 18px;
-    position: relative;
-    height: 100vh ;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 15px;
-}
-
-.factCardContainer{
-    background-color: rgba(0, 0, 0, 0.5) ;    
-    width: 100%;
-    position: relative;
-    z-index: 3;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-.factsCard{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    width: 100px;
     height: auto;
-    min-height: 200px;
-    position: relative;
-    z-index: 2;
+  }
 
+  .factsButtonContainer {
+    bottom: 40px;
+  }
 }
 
-.cardHeader{
-    border-bottom: 2px solid rgba(130, 111, 102, 0.7);
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+@media (min-width: 1440px) {
+  .factsText {
+    font-size: 22px;
+  }
 
-.factsTitle{
-    font-family: var(--header-font-family);
-    color: var(--primary-color);
-    font-size: 30px;
-    margin: 0;
-    text-shadow: -1px -1px 20px black,
-                  3px 3px 20px black,
-                  6px 6px 20px black;
-    position: relative;
-    z-index: 2;
-}
-
-.saveButton, .nextButton{
-    color: var(--secondary-color) ;
-    font-size: 14px;
-    font-weight: bold;
-    width: 90px;
-}
-
-.buttons:hover , .buttons:active, .buttons:focus{
-    color: var(--secondary-color) !important;
-    border: none;
-}
-
-.factsText{
-    padding: 10px;
-    margin: 0;
-    word-break: break-word;
-}
-
-.factsButtonContainer{
-    position: absolute;
-    bottom: 20px;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    column-gap: 20px;
-    width: 100%;
-
-}
-
-.openBasketFactsButtonSection{
-    position: fixed;
-    bottom: 30px;
-    right: 40px;
-    background-color: transparent;
-    z-index: 9;
-}
-
-.draggableButton{
-    cursor: move;
-    z-index: 10;
-    border: none;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    color: var(--secondary-color);
-    font-weight: bold;
-}
-
-.draggableButton:hover, .draggableButton:active {
-    color: var(--secondary-color);
-
-}
-
-
-@media(min-width: 425px){
-    .cardHeader {
-        justify-content: flex-start;
-    }
-
-    .factsTitle{
-        padding-right: 30px;
-    }
-}
-
-@media(min-width: 600px){
-    .factsSection{
-        padding: 0 30px;
-    }
-}
-
-@media(min-width: 768px){
-    .factsTitle{
-        padding-right: 30px;
-        font-size: 36px;
-    }
-
-    .factsText{
-        font-size: 20px;
-    }
-
-    .factCardContainer{
-        max-width: 800px;
-    }
-
-    .backgroundImage{
-        top: 80px;
-    }
-}
-
-@media(min-width: 1024px){
-    .buttons{
-        font-size: 18px;
-        width: 100px;
-        height: auto;
-    }
-
-    .factsButtonContainer{
-        bottom: 40px;  
-    }
+  .factsButtonContainer {
+    bottom: 60px;
+  }
 }

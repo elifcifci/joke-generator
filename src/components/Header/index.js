@@ -5,25 +5,16 @@ import { useLocation, Link } from "react-router-dom";
 //Ant-design
 import "antd/dist/antd.css";
 import { Space } from "antd";
-import { EllipsisOutlined } from "@ant-design/icons";
 
 //Style and animation
-import { useCycle } from "framer-motion";
 import style from "./style.module.css";
 
 import NavbarMenu from "../NavbarMenu";
 import { navigation } from "../../constants/navigationConstants";
 
 const Header = () => {
-  const [isOpen, cycleIsOpen] = useCycle(false, true);
   const [pageTitle, setPageTitle] = useState("");
   const { pathname } = useLocation();
-  const [pageWidth, setPageWidth] = useState(0);
-
-  useEffect(() => {
-    let innerWidth = window.innerWidth;
-    setPageWidth(innerWidth);
-  }, [isOpen]);
 
   useEffect(() => {
     navigation.forEach((item) => {
@@ -32,10 +23,6 @@ const Header = () => {
       }
     });
   }, [pathname]);
-
-  const showMenu = () => {
-    cycleIsOpen();
-  };
 
   return (
     <Space size="large" align="center" className={style.headerContainer}>
@@ -49,14 +36,17 @@ const Header = () => {
           />
         </Link>
 
-        <h1 className={style.headerTitle}>{pageTitle}</h1>
-        <EllipsisOutlined
-          rotate={isOpen ? 90 : 0}
-          onClick={showMenu}
-          className={style.ellipsis}
-        />
+        <div className={style.titleContainer}>
+          {pageTitle !== "Chuck Norris Facts" && (
+            <Link className={`${style.headerTitle} ${style.headerLink}`} to="/">
+              CNF
+            </Link>
+          )}
+
+          <h1 className={style.headerTitle}>{pageTitle}</h1>
+        </div>
       </div>
-      <NavbarMenu isOpen={isOpen} showMenu={showMenu} />
+      <NavbarMenu />
     </Space>
   );
 };

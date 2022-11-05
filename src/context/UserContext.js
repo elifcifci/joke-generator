@@ -43,8 +43,6 @@ export const UserProvider = ({ children }) => {
         //jokes recorded by the current user, added users state
         temporary.push(copyCurrent);
         setUsers(temporary);
-        console.log("temporary: ", temporary, temporary.length);
-
         localStorage.setItem("users", JSON.stringify(temporary));
 
         return;
@@ -103,7 +101,7 @@ export const UserProvider = ({ children }) => {
       signIn(userKnowledge);
     } else if (isSignIn && filteredUser[0] === undefined) {
       setIsModalOpen(true);
-      message.error("Your name or password is incorrect.", 0.6);
+      message.error("Your name or password is incorrect.");
     }
 
     if (isSignUp && filteredUser[0] === undefined) {
@@ -111,7 +109,7 @@ export const UserProvider = ({ children }) => {
       signUp(userKnowledge);
     } else if (isSignUp && filteredUser[0] !== undefined > 0) {
       setIsModalOpen(true);
-      message.error("This username is taken. Try another username.", 0.6);
+      message.error("This username is taken. Try another username.");
     }
   };
 

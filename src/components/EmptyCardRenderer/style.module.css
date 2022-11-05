@@ -1,46 +1,46 @@
-.emptyCardContainer{
-    border-radius: 8px;
-    padding: 20px;
-    width: 90%;
-    margin: 0;
-    position: relative;
-    z-index: 2;
-    background-color: rgba(0, 0, 0, 0.7);
-    font-size: 16px;
+.emptyCardContainer {
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 16px;
 }
 
-.emptyCardText{
-    color: white;
+.emptyCardText {
+  color: white;
 }
 
-@media (min-width: 425px){
-    .emptyCardContainer{
-        height: 280px !important;
-        max-width: 460px;
-    }
-    .emptyCardContainer img{
-        width: 300px;
-        height: 200px !important;
-    }
-    .emptyCardText{
-        position: absolute;
-        bottom: 25px;
-        left: 0;
-        width: 100%;
-    }
+@media (min-width: 425px) {
+  .emptyCardContainer {
+    height: 280px !important;
+    max-width: 460px;
+  }
+  .emptyCardContainer img {
+    width: 300px;
+    height: 200px !important;
+  }
+  .emptyCardText {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+  }
 }
 
-@media (min-width: 1024px){
-    .emptyCardContainer{
-        height: 420px !important;
-        max-width: 540px;
-        padding: 40px;
-    }
-    .emptyCardContainer img{
-        width: 450px;
-        height: 300px !important;
-    }
-    .emptyCardText{
-        font-size: 20px;
-    }
+@media (min-width: 1024px) {
+  .emptyCardContainer {
+    height: 420px !important;
+    max-width: 540px;
+    padding: 40px;
+  }
+  .emptyCardContainer img {
+    width: 450px;
+    height: 300px !important;
+  }
+  .emptyCardText {
+    font-size: 20px;
+  }
 }
