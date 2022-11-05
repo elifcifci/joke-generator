@@ -1,43 +1,27 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import { userList } from "../constants/usersListConstant";
 import { message } from "antd";
 import FactsContext from "./FactsContext";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [users, setUsers] = useState([...userList]);
+  const [users, setUsers] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const { factsInSaved, setFactsInSaved } = useContext(FactsContext);
 
   useEffect(() => {
-    //users initiala dönmemesi için kayıtlı user varsa localstoragedan veri çekiyorum.
+    //If there is a registered user so that users do not return to initial, I pull data from localStorage.
     JSON.parse(localStorage.getItem("users")) &&
       setUsers([...JSON.parse(localStorage.getItem("users"))]);
 
-    //localde kayıtlı user yoksa çalışır
-    localStorage.getItem("users") === null &&
-      localStorage.setItem("users", JSON.stringify(users));
-
+    //isLoggedIn should be true as long as currentUser is registered in localStorage.
+    //CurrentUser is deleted from localStorage only when the user clicks logout.
     if (localStorage.getItem("currentUser")) {
       setCurrentUser({ ...JSON.parse(localStorage.getItem("currentUser")) });
       setIsLoggedIn(true);
     }
   }, []);
-
-  useEffect(() => {
-    console.log("users: ", users);
-
-    //saves users to localstorage when sign up or sign in is done.
-    localStorage.getItem("currentUser") &&
-      localStorage.setItem("users", JSON.stringify(users));
-  }, [users]);
-
-  useEffect(() => {
-    (localStorage.getItem("isLoggedIn") !== null || isLoggedIn) &&
-      localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
-  }, [isLoggedIn]);
 
   useEffect(() => {
     users.forEach((item, index) => {
@@ -52,13 +36,16 @@ export const UserProvider = ({ children }) => {
           ...users.slice(index + 1, users.length),
         ];
 
-        //Added joke list to copy of currentUser. (Not saved in localstorage.)
+        //Added joke list to copy of currentUser. (Not saved in localStorage.)
         let copyCurrent = { ...currentUser };
         copyCurrent.savedFacts = factsInSaved;
 
         //jokes recorded by the current user, added users state
         temporary.push(copyCurrent);
         setUsers(temporary);
+        console.log("temporary: ", temporary, temporary.length);
+
+        localStorage.setItem("users", JSON.stringify(temporary));
 
         return;
       }
@@ -69,6 +56,7 @@ export const UserProvider = ({ children }) => {
     setIsLoggedIn(false);
     setCurrentUser({});
     setFactsInSaved([]);
+
     localStorage.removeItem("currentUser");
     localStorage.removeItem("saved-facts");
     localStorage.removeItem("isLoggedIn");
@@ -92,9 +80,10 @@ export const UserProvider = ({ children }) => {
     userKnowledge.id = users.length;
     delete userKnowledge.confirm;
     setIsLoggedIn(true);
+    localStorage.setItem("currentUser", JSON.stringify(userKnowledge));
+    localStorage.setItem("users", JSON.stringify([...users, userKnowledge]));
     setCurrentUser(userKnowledge);
     setUsers((previous) => [...previous, userKnowledge]);
-    localStorage.setItem("currentUser", JSON.stringify(userKnowledge));
   };
 
   // This is where it's decided whether to signIn or signUp.

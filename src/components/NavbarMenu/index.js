@@ -25,8 +25,6 @@ const NavbarMenu = ({ isOpen, showMenu }) => {
     setPageWidth(innerWidth);
   }, [isOpen]);
 
-  console.log(pageWidth);
-
   let closeDragAmount = `${pageWidth >= 768 ? -pageWidth : 0}`;
   let isAnimated = `${
     pageWidth >= 768 ? (isOpen ? "textOpen" : "textClose") : "textOpen"
