@@ -24,6 +24,8 @@
 html,
 body {
   height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 p,
@@ -37,11 +39,6 @@ h6 {
 }
 
 body {
-  overflow-x: scroll;
-}
-
-@media (min-width: 320px) {
-  body {
-    overflow-x: hidden;
-  }
+  min-width: 320px;
+  padding: 70px 0 0 0;
 }

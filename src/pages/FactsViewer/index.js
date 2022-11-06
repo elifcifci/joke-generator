@@ -23,32 +23,34 @@ const JokeViewer = () => {
         className={style.backgroundImage}
         src="./images/chuck-norris-Evgeny-Yurichev.png"
       />
-      <section id={style.factsSection} className={style.factsSection}>
-        <div className={style.factCardContainer}>
-          <div className={style.cardHeader}>
-            <h2 className={style.factsTitle}>Categories: </h2>
-            <CategoryList />
+      <div className={style.factsInnerContainer}>
+        <section id={style.factsSection} className={style.factsSection}>
+          <div className={style.factCardContainer}>
+            <div className={style.cardHeader}>
+              <h2 className={style.factsTitle}>Categories: </h2>
+              <CategoryList />
+            </div>
+            <div className={style.factsCard}>
+              <p className={style.factsText}>{facts.value}</p>
+            </div>
           </div>
-          <div className={style.factsCard}>
-            <p className={style.factsText}>{facts.value}</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className={style.factsButtonContainer}>
-        <Button
-          className={`${style.nextButton} ${style.buttons}`}
-          onClick={openNextFact}
-        >
-          Next
-        </Button>
-        <Button
-          className={`${style.saveButton} ${style.buttons}`}
-          onClick={() => handleClick(facts, "toBasket")}
-        >
-          Basket
-        </Button>
-      </section>
+        <section className={style.factsButtonContainer}>
+          <Button
+            className={`${style.nextButton} ${style.buttons}`}
+            onClick={openNextFact}
+          >
+            Next
+          </Button>
+          <Button
+            className={`${style.saveButton} ${style.buttons}`}
+            onClick={() => handleClick(facts, "toBasket")}
+          >
+            Basket
+          </Button>
+        </section>
+      </div>
     </div>
   );
 };

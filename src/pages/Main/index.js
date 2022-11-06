@@ -10,11 +10,7 @@ const Main = () => {
   const cardRenderer = () => {
     return mainConstants.map((constant) => {
       return (
-        <section
-          key={constant.id}
-          id={style[constant.id]}
-          className={style.sectionContainer}
-        >
+        <section key={constant.id} className={style.sectionContainer}>
           <div className={style.innerContainer}>
             <div className={style.sectionImageContainer}>
               <img
@@ -48,9 +44,7 @@ const Main = () => {
 
   return (
     <div className={style.mainPageContainer}>
-      <Carousel autoplay className={style.carousel}>
-        {cardRenderer()}
-      </Carousel>
+      <Carousel className={style.carousel}>{cardRenderer()}</Carousel>
     </div>
   );
 };

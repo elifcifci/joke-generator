@@ -1,3 +1,8 @@
+.factsContainer {
+  position: relative;
+  height: calc(100vh - 100px);
+}
+
 .backgroundImage {
   position: fixed;
   z-index: 1;
@@ -8,25 +13,35 @@
   height: 100%;
 }
 
+.factsInnerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 150px 0 30px 0;
+  min-height: 100%;
+  position: relative;
+  z-index: 3;
+}
+
 .factsSection {
   color: white;
   font-size: 18px;
   position: relative;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 0 15px;
+  margin-bottom: 50px;
 }
 
 .factCardContainer {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
   position: relative;
   z-index: 3;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .factsCard {
@@ -35,7 +50,7 @@
   justify-content: space-around;
   align-items: center;
   height: auto;
-  min-height: 200px;
+  min-height: 160px;
   position: relative;
   z-index: 2;
 }
@@ -80,21 +95,12 @@
 }
 
 .factsButtonContainer {
-  position: absolute;
-  bottom: 20px;
+  position: relative;
   z-index: 2;
   display: flex;
   justify-content: center;
   column-gap: 20px;
   width: 100%;
-}
-
-.openBasketFactsButtonSection {
-  position: fixed;
-  bottom: 30px;
-  right: 40px;
-  background-color: transparent;
-  z-index: 9;
 }
 
 .draggableButton {
