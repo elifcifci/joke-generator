@@ -65,6 +65,9 @@
   .headerContainer {
     justify-content: space-between;
   }
+}
+
+@media (min-width: 500px) {
   .titleContainer {
     display: flex;
   }
