@@ -25,9 +25,9 @@ function App() {
             <Route path="/facts-viewer" exact element={<FactsViewer />} />
             <Route path="/facts-in-saved" exact element={<FactsInSaved />} />
             <Route path="/facts-in-basket" exact element={<FactsInBasket />} />
-            <Route path="*" exact element={<ErrorPage />} />
           </>
         )}
+        <Route path="*" exact element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );

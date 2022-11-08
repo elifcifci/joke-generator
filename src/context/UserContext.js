@@ -25,11 +25,7 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     users.forEach((item, index) => {
-      if (
-        item.username === currentUser.username &&
-        item.surname === currentUser.surname &&
-        item.password === currentUser.password
-      ) {
+      if (item.username === currentUser.username) {
         //All users except the current user.
         let temporary = [
           ...users.slice(0, index),
@@ -85,7 +81,7 @@ export const UserProvider = ({ children }) => {
   };
 
   // This is where it's decided whether to signIn or signUp.
-  const isUserRegistered = (userKnowledge, target, setIsModalOpen) => {
+  const checkUserRegistered = (userKnowledge, target, setIsModalOpen) => {
     const isSignIn = target === "signIn";
     const isSignUp = target === "signUp";
 
@@ -100,7 +96,6 @@ export const UserProvider = ({ children }) => {
       setIsModalOpen(false);
       signIn(userKnowledge);
     } else if (isSignIn && filteredUser[0] === undefined) {
-      setIsModalOpen(true);
       message.error("Your name or password is incorrect.");
     }
 
@@ -108,7 +103,6 @@ export const UserProvider = ({ children }) => {
       setIsModalOpen(false);
       signUp(userKnowledge);
     } else if (isSignUp && filteredUser[0] !== undefined > 0) {
-      setIsModalOpen(true);
       message.error("This username is taken. Try another username.");
     }
   };
@@ -119,7 +113,7 @@ export const UserProvider = ({ children }) => {
     users,
     signIn,
     logout,
-    isUserRegistered,
+    checkUserRegistered,
   };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;

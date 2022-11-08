@@ -6,12 +6,12 @@ import "antd/dist/antd.css";
 import { Form, Input, Button } from "antd";
 
 const FormRenderer = ({ constants, processFor, setIsModalOpen }) => {
-  const { isUserRegistered } = useContext(UserContext);
+  const { checkUserRegistered } = useContext(UserContext);
 
   const onFinish = (values) => {
     processFor === "signIn"
-      ? isUserRegistered(values, "signIn", setIsModalOpen)
-      : isUserRegistered(values, "signUp", setIsModalOpen);
+      ? checkUserRegistered(values, "signIn", setIsModalOpen)
+      : checkUserRegistered(values, "signUp", setIsModalOpen);
   };
 
   const fromItemRenderer = () => {
@@ -27,7 +27,11 @@ const FormRenderer = ({ constants, processFor, setIsModalOpen }) => {
             dependencies: ["password"],
           })}
         >
-          <Input />
+          {constant.name === "password" || constant.name === "confirm" ? (
+            <Input.Password />
+          ) : (
+            <Input />
+          )}
         </Form.Item>
       );
     });

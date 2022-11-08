@@ -7,17 +7,22 @@ const initialStateTemplate = { id: "", category: "", value: "" };
 const baseUrl = "https://api.chucknorris.io/jokes/";
 
 export const FactsProvider = ({ children }) => {
-  const [factCategories, setFactCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("random");
   const [facts, setFacts] = useState(initialStateTemplate);
   const [factsInBasket, setFactsInBasket] = useState([]);
   const [factsInSaved, setFactsInSaved] = useState([]);
-  useEffect(() => {
-    openNextFact();
+  const [factCategories, setFactCategories] = useState([]);
 
+  useEffect(() => {
     //take categories in the API
     axios.get(`${baseUrl}categories`).then((response) => {
-      setFactCategories(["random", ...response.data]);
+      const unwantedCategoryIndex = response.data.indexOf("explicit");
+
+      setFactCategories([
+        "random",
+        ...response.data.slice(0, unwantedCategoryIndex),
+        ...response.data.slice(unwantedCategoryIndex + 1, response.data.length),
+      ]);
     });
 
     localStorage.getItem("saved-facts") !== null &&
@@ -35,27 +40,25 @@ export const FactsProvider = ({ children }) => {
   }, [factsInSaved]);
 
   const openNextFact = () => {
-    axios
-      .get(
-        `${baseUrl}${
-          selectedCategory === "random"
-            ? `random`
-            : `random?category=${selectedCategory}`
-        }`
-      )
-      .then((response) => {
-        setFacts({
-          id: response.data.id,
-          value: response.data.value,
-          category: selectedCategory,
-        });
+    const link =
+      selectedCategory === "random"
+        ? `random`
+        : `random?category=${selectedCategory}`;
+
+    axios.get(`${baseUrl}${link}`).then((response) => {
+      setFacts({
+        id: response.data.id,
+        value: response.data.value,
+        category: selectedCategory,
       });
+    });
   };
 
   // When we want to save any joke, we check with this function if this joke is one of the ones we saved before.
-  const checkIsSameJoke = (id, targetPlace) => {
+  const checkIsSameFact = (id, targetPlace) => {
     let haveSameFactInBasket = false;
     let haveSameFactInSaved = false;
+
     if (targetPlace === "toBasket") {
       factsInBasket.forEach((item) => {
         if (item.id === id) {
@@ -81,7 +84,7 @@ export const FactsProvider = ({ children }) => {
   };
 
   const addInBasketOrSavedFacts = (fact, targetPlace) => {
-    const isSameFact = checkIsSameJoke(fact.id, targetPlace);
+    const isSameFact = checkIsSameFact(fact.id, targetPlace);
 
     // Users can not add the fact from randomJoke or categorizedJoke to factBasket, if factBasket and factSaved have the same fact.
     // Users can not add the fact from factBasket to factSaved, if factSaved has the same fact.
