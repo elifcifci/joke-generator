@@ -2,80 +2,59 @@
   background-color: rgba(0, 0, 0, 1);
   display: flex;
   align-items: center !important;
-  justify-content: center;
+  justify-content: space-between;
   height: 70px;
   box-shadow: rgba(61, 43, 43, 0.4) 0px 2px 5px;
   position: relative;
   z-index: 9;
-  padding: 0 20px;
+  padding: 0 15px;
   position: fixed;
   top: 0;
   width: 100%;
 }
 
-.pageIconAndTitle {
+.headerMenuItemContainer {
   display: flex;
-}
-
-.headerGifContainer {
-  display: none;
-  margin-right: 20px;
-}
-.headerGif {
-  width: 40px;
-  height: 50px;
-  background-color: unset;
-}
-
-.titleContainer {
-  display: none;
-  width: 100%;
+  column-gap: 8px;
   width: max-content;
 }
 
-.headerTitle {
-  font-family: var(--header-font-family);
-  margin: 0;
+.headerMenu {
+  display: flex;
+  column-gap: 8px;
+}
+
+.headerMenuLinks {
   color: var(--primary-color);
-  font-size: 22px;
-  line-height: 2.3;
+  font-size: 16px;
 }
 
-.headerLink {
-  padding-right: 10px;
-}
-
-.headerLink:hover {
+.headerMenuLinks:hover {
   color: var(--primary-color);
-}
-
-.menuContainer {
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 30px;
+  scale: 1.1;
 }
 
 @media (min-width: 425px) {
-  .headerContainer {
-    justify-content: space-between;
+  .headerMenuItemContainer {
+    column-gap: 12px;
   }
-}
 
-@media (min-width: 500px) {
-  .titleContainer {
-    display: flex;
+  .headerMenu {
+    column-gap: 10px;
   }
 }
 
 @media (min-width: 600px) {
-  .headerTitle {
-    font-size: 26px;
+  .headerMenuItemContainer {
+    column-gap: 18px;
+  }
+
+  .headerMenu {
+    column-gap: 20px;
+  }
+
+  .headerMenuLinks {
+    font-size: 18px;
   }
 }
 
@@ -85,16 +64,15 @@
     padding: 30px;
   }
 
-  .headerTitle {
-    font-size: 30px;
+  .headerMenu {
+    column-gap: 30px;
   }
 
-  .headerGifContainer {
-    display: initial;
-    margin-right: 20px;
+  .headerMenuItemContainer {
+    column-gap: 25px;
   }
-  .headerGif {
-    width: 50px;
-    height: 60px;
+
+  .headerMenuLinks {
+    font-size: 20px;
   }
 }
