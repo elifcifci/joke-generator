@@ -42,3 +42,18 @@ body {
   min-width: 320px;
   padding: 70px 0 0 0;
 }
+
+/* ant design style overriding and changing for model and form */
+
+.ant-modal-header {
+  border-bottom: #bf9e8f6c 1px solid !important;
+}
+
+.ant-modal-title {
+  font-family: var(--header-font-family) !important;
+  font-size: 25px !important;
+}
+
+.ant-modal-content {
+  box-shadow: none !important;
+}

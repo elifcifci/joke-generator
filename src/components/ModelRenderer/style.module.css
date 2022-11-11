@@ -1,0 +1,21 @@
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  border-radius: 8px;
+  background-color: var(--background-black);
+}
+
+.modalContainer div {
+  color: var(--text-color);
+  background-color: var(--background-black);
+}
+
+.modalContainer button {
+  color: var(--text-color);
+}
+
+.modalContainer button:hover {
+  color: var(--text-color);
+  scale: 1.2;
+}

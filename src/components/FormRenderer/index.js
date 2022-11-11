@@ -4,6 +4,7 @@ import UserContext from "../../context/UserContext";
 //Ant Design
 import "antd/dist/antd.css";
 import { Form, Input, Button } from "antd";
+import style from "./style.module.css";
 
 const FormRenderer = ({ constants, processFor, setIsModalOpen }) => {
   const { checkUserRegistered } = useContext(UserContext);
@@ -38,14 +39,18 @@ const FormRenderer = ({ constants, processFor, setIsModalOpen }) => {
   };
   return (
     <Form
-      layout="vertical"
+      layout="horizontal"
       hideRequiredMark
       name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
       autoComplete="off"
+      labelCol={{ span: 7 }}
+      wrapperCol={{ span: 15 }}
+      className={style.formContainer}
+      style={{
+        boxShadow: "none",
+      }}
     >
       {fromItemRenderer()}
       <Button htmlType="submit">Submit</Button>

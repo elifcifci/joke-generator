@@ -1,6 +1,6 @@
 import React from "react";
 import FormRenderer from "../FormRenderer";
-
+import style from "./style.module.css";
 //Ant Design
 import "antd/dist/antd.css";
 import { Modal } from "antd";
@@ -30,6 +30,10 @@ const ModelRenderer = ({
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
+        className={style.modalContainer}
+        style={{
+          boxShadow: "none",
+        }}
       >
         {componentName === "SignUp" ? (
           <FormRenderer

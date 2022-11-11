@@ -23,7 +23,7 @@
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   padding: 10px 10px 10px 25px;
   box-sizing: border-box;
-  width: 130px;
+  width: 100px;
 }
 
 .menuLinks {
@@ -79,7 +79,7 @@
     top: 80px;
     right: 0px;
     padding: 12px 20px 12px 25px;
-    width: 150px;
+    width: 130px;
   }
   .menuContainer {
     justify-content: flex-end;
@@ -96,6 +96,5 @@
   }
   .userMenu {
     padding: 12px 25px 12px 25px;
-    width: 160px;
   }
 }
