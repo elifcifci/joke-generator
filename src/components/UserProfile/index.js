@@ -54,11 +54,11 @@ const UserProfile = () => {
 
   return (
     <div>
-      <div className={style.menuContainer}>
-        <UserOutlined
-          onClick={() => setIsOpenMenu((previous) => !previous)}
-          className={style.userIcon}
-        />
+      <div
+        className={style.menuContainer}
+        onClick={() => setIsOpenMenu((previous) => !previous)}
+      >
+        <UserOutlined className={style.userIcon} />
         {isOpenMenu &&
           (isLoggedIn
             ? renderUserProfileItems(navigation.inProfile)

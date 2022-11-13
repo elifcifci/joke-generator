@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import style from "./style.module.css";
 
 //Ant-design
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import { Space, Typography } from "antd";
 const { Title } = Typography;
 

@@ -8,14 +8,42 @@
 
 .modalContainer div {
   color: var(--text-color);
-  background-color: var(--background-black);
+  border: none;
 }
 
 .modalContainer button {
   color: var(--text-color);
+  border: none;
 }
-
 .modalContainer button:hover {
   color: var(--text-color);
-  scale: 1.2;
+  border: none;
+}
+
+.modalContainer input,
+.modalContainer input:active,
+.modalContainer input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+:global(.ant-modal-content) {
+  background-color: var(--background-black);
+  box-shadow: none;
+}
+
+:global(.ant-modal-header) {
+  background-color: var(--background-black);
+  font-family: var(--header-font-family);
+  border-bottom: 1px solid rgba(191, 158, 143, 0.3) !important;
+}
+
+:global(.ant-modal-title) {
+  font-family: var(--header-font-family);
+  font-size: 25px;
+}
+
+:global(.ant-input-password) {
+  border: none;
+  box-shadow: none;
 }

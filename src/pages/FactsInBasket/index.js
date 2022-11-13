@@ -10,13 +10,17 @@ const FactsInBasket = () => {
 
   return (
     <div className={style.factsContainer}>
-      <img className={style.backgroundImage} src="./images/chuck-norris.png" />
+      <img
+        className={style.backgroundImage}
+        src="./images/chuck-norris.png"
+        alt="background"
+      />
 
       <ul className={style.factsInBasketList}>
         <FactsList />
       </ul>
 
-      {factsInBasket.length == 0 && (
+      {factsInBasket.length === 0 && (
         <EmptyCardRenderer text="You haven't added any Chuck Norris facts to your basket yet" />
       )}
     </div>

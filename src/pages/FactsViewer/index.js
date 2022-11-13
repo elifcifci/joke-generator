@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import FactsContext from "../../context/FactsContext";
 import CategoryList from "../../components/CategoryList";
 import style from "./style.module.css";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import { Button, message } from "antd";
 
-const JokeViewer = () => {
+const FactViewer = () => {
   const { facts, openNextFact, addInBasketOrSavedFacts } =
     useContext(FactsContext);
 
@@ -22,6 +22,7 @@ const JokeViewer = () => {
       <img
         className={style.backgroundImage}
         src="./images/chuck-norris-Evgeny-Yurichev.png"
+        alt="background"
       />
       <div className={style.factsInnerContainer}>
         <section id={style.factsSection} className={style.factsSection}>
@@ -44,7 +45,7 @@ const JokeViewer = () => {
             Next
           </Button>
           <Button
-            className={`${style.saveButton} ${style.buttons}`}
+            className={`${style.basketButton} ${style.buttons}`}
             onClick={() => handleClick(facts, "toBasket")}
           >
             Basket
@@ -55,4 +56,4 @@ const JokeViewer = () => {
   );
 };
 
-export default JokeViewer;
+export default FactViewer;

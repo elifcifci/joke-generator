@@ -65,7 +65,7 @@ export const UserProvider = ({ children }) => {
       return user.username === data.username && user.password === data.password;
     });
 
-    if (filteredUser[0].savedFacts !== undefined) {
+    if (filteredUser[0].savedFacts) {
       setFactsInSaved([...filteredUser[0].savedFacts]);
     }
   };
@@ -92,17 +92,17 @@ export const UserProvider = ({ children }) => {
         : user.username === userKnowledge.username;
     });
 
-    if (isSignIn && filteredUser[0] !== undefined) {
+    if (isSignIn && filteredUser[0]) {
       setIsModalOpen(false);
       signIn(userKnowledge);
-    } else if (isSignIn && filteredUser[0] === undefined) {
+    } else if (isSignIn && !filteredUser[0]) {
       message.error("Your name or password is incorrect.");
     }
 
-    if (isSignUp && filteredUser[0] === undefined) {
+    if (isSignUp && !filteredUser[0]) {
       setIsModalOpen(false);
       signUp(userKnowledge);
-    } else if (isSignUp && filteredUser[0] !== undefined > 0) {
+    } else if (isSignUp && filteredUser[0] > 0) {
       message.error("This username is taken. Try another username.");
     }
   };

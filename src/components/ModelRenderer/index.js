@@ -2,7 +2,8 @@ import React from "react";
 import FormRenderer from "../FormRenderer";
 import style from "./style.module.css";
 //Ant Design
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import { Modal } from "antd";
 
 //Constants

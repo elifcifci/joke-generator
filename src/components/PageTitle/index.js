@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 //Ant-design
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 
 //Style
 import style from "./style.module.css";

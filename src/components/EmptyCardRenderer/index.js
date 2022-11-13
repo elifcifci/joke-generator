@@ -2,7 +2,7 @@ import React from "react";
 import style from "./style.module.css";
 
 //Ant Design
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import { Empty } from "antd";
 
 const EmptyCardRenderer = ({ text }) => {

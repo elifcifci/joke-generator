@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import UserContext from "../../context/UserContext";
 
 //Ant Design
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import { Form, Input, Button } from "antd";
 import style from "./style.module.css";
 

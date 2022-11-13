@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import FactsContext from "../../context/FactsContext";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import style from "./style.module.css";
 import EmptyCardRenderer from "../../components/EmptyCardRenderer";
 import { CloseOutlined } from "@ant-design/icons";
@@ -27,7 +27,11 @@ const FactsInSaved = () => {
 
   return (
     <div className={style.factsContainer}>
-      <img className={style.backgroundImage} src="./images/img-4.jpg" alt="" />
+      <img
+        className={style.backgroundImage}
+        src="./images/img-4.jpg"
+        alt="background"
+      />
       <ul className={style.factsInSavedList}>{renderJokeList()}</ul>
       {factsInSaved.length === 0 && (
         <EmptyCardRenderer

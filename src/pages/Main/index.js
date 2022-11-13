@@ -3,7 +3,7 @@ import style from "./style.module.css";
 import { mainConstants } from "../../constants/mainConstants";
 
 //Ant-design
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import { Carousel } from "antd";
 
 const Main = () => {
