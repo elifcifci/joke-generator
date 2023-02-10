@@ -16,12 +16,10 @@ export const FactsProvider = ({ children }) => {
   useEffect(() => {
     //take categories in the API
     axios.get(`${baseUrl}categories`).then((response) => {
-      const unwantedCategoryIndex = response.data.indexOf("explicit");
 
       setFactCategories([
         "random",
-        ...response.data.slice(0, unwantedCategoryIndex),
-        ...response.data.slice(unwantedCategoryIndex + 1, response.data.length),
+        ...response.data.slice(0, response.data.length),
       ]);
     });
 
