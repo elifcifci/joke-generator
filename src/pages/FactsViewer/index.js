@@ -39,16 +39,16 @@ const FactViewer = () => {
 
         <section className={style.factsButtonContainer}>
           <Button
-            className={`${style.nextButton} ${style.buttons}`}
-            onClick={openNextFact}
-          >
-            Next
-          </Button>
-          <Button
             className={`${style.basketButton} ${style.buttons}`}
             onClick={() => handleClick(facts, "toBasket")}
           >
             Basket
+          </Button>
+          <Button
+            className={`${style.nextButton} ${style.buttons}`}
+            onClick={openNextFact}
+          >
+            Next
           </Button>
         </section>
       </div>

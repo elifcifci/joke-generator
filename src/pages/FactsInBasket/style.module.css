@@ -12,6 +12,7 @@
   z-index: 1;
   top: 70px;
   object-fit: cover;
+  background-color: #fff3e0;
   height: 100%;
   filter: brightness(70%);
 }

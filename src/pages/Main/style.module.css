@@ -39,6 +39,7 @@
   width: 220px;
   height: 220px;
   object-fit: cover;
+  background-color: #FFF3E0;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
 }

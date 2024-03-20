@@ -28,18 +28,18 @@ const FactsList = () => {
             <p className={style.factsInBasketText}>{fact.value}</p>
             <div className={style.factsButtonContainer}>
               <Button
-                className={`${style.saveButton} ${style.buttons}`}
-                onClick={() => handleClick(index, fact, "toSaved")}
-              >
-                Save
-              </Button>
-              <Button
                 className={`${style.removeButton} ${style.buttons}`}
                 onClick={() =>
                   deleteFactsInBasketOrRemoveFromSavedFact(index, "remove")
                 }
               >
                 Remove
+              </Button>
+              <Button
+                className={`${style.saveButton} ${style.buttons}`}
+                onClick={() => handleClick(index, fact, "toSaved")}
+              >
+                Save
               </Button>
             </div>
           </li>
