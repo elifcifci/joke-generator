@@ -12,7 +12,7 @@ const FactsInBasket = () => {
     <div className={style.factsContainer}>
       <img
         className={style.backgroundImage}
-        src="./images/chuck-norris.png"
+        src="./images/chuck-norris-Evgeny-Yurichev.png"
         alt="background"
       />
 

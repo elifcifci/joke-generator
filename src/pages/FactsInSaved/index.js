@@ -29,7 +29,7 @@ const FactsInSaved = () => {
     <div className={style.factsContainer}>
       <img
         className={style.backgroundImage}
-        src="./images/img-4.jpg"
+        src="./images/chuck-norris-Evgeny-Yurichev.png"
         alt="background"
       />
       <ul className={style.factsInSavedList}>{renderJokeList()}</ul>
